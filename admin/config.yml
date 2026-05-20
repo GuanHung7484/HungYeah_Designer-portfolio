@@ -1,0 +1,197 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "zh_Hant"
+
+collections:
+  - name: "site"
+    label: "整站設定"
+    files:
+      - file: "content.json"
+        label: "全站內容"
+        name: "all"
+        editor:
+          preview: false
+        fields:
+          # ────────── 共用 ──────────
+          - label: "共用 / Site"
+            name: "site"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "網站名稱（左上 Logo）", name: "siteName", widget: "string" }
+              - { label: "聯絡信箱（表單會寄到這裡）", name: "email", widget: "string" }
+              - { label: "頁尾版權文字", name: "copyright", widget: "string" }
+              - { label: "導覽：作品", name: "navPortfolio", widget: "string" }
+              - { label: "導覽：關於", name: "navAbout", widget: "string" }
+              - { label: "導覽：聯絡", name: "navContact", widget: "string" }
+
+          # ────────── 首頁 ──────────
+          - label: "首頁 / Home"
+            name: "home"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "瀏覽器分頁標題", name: "pageTitle", widget: "string" }
+              - { label: "Hero 標題第 1 行", name: "heroTitleLine1", widget: "string" }
+              - { label: "Hero 標題第 2 行", name: "heroTitleLine2", widget: "string" }
+              - { label: "Hero 描述文字", name: "heroDescription", widget: "text" }
+              - { label: "Hero 主按鈕文字", name: "heroCtaPrimary", widget: "string" }
+              - { label: "Hero 次按鈕文字", name: "heroCtaSecondary", widget: "string" }
+              - { label: "Hero 背景圖", name: "heroImage", widget: "image", required: false }
+              - { label: "精選作品 區段標題", name: "featuredTitle", widget: "string" }
+              - { label: "精選作品 區段英文小標", name: "featuredEyebrow", widget: "string" }
+              - label: "精選作品（首頁 2 張）"
+                name: "featuredWorks"
+                widget: "list"
+                fields:
+                  - { label: "標題", name: "title", widget: "string" }
+                  - { label: "副標（英文小字）", name: "subtitle", widget: "string" }
+                  - { label: "圖片", name: "image", widget: "image", required: false }
+                  - { label: "連結", name: "link", widget: "string", default: "portfolio.html" }
+              - label: "服務（3 項）"
+                name: "services"
+                widget: "list"
+                max: 3
+                min: 3
+                fields:
+                  - { label: "編號（如 01.）", name: "number", widget: "string" }
+                  - { label: "標題", name: "title", widget: "string" }
+                  - { label: "描述", name: "description", widget: "text" }
+              - { label: "底部 CTA 標題", name: "ctaTitle", widget: "string" }
+              - { label: "底部 CTA 描述", name: "ctaDescription", widget: "text" }
+              - { label: "底部 CTA 按鈕文字", name: "ctaButton", widget: "string" }
+
+          # ────────── 作品集頁 ──────────
+          - label: "作品集頁 / Portfolio"
+            name: "portfolio"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "瀏覽器分頁標題", name: "pageTitle", widget: "string" }
+              - { label: "頁面標題", name: "headerTitle", widget: "string" }
+              - { label: "頁面描述", name: "headerDescription", widget: "text" }
+              - label: "作品清單"
+                name: "works"
+                widget: "list"
+                fields:
+                  - label: "分類（決定篩選器歸屬）"
+                    name: "category"
+                    widget: "select"
+                    options:
+                      - { label: "UI/UX", value: "ui" }
+                      - { label: "攝影", value: "photography" }
+                      - { label: "平面設計", value: "graphic" }
+                  - { label: "分類顯示標籤", name: "categoryLabel", widget: "string" }
+                  - { label: "作品標題", name: "title", widget: "string" }
+                  - { label: "作品描述", name: "description", widget: "text" }
+                  - { label: "作品封面圖", name: "image", widget: "image", required: false }
+                  - { label: "底部行動文字（如 LIVE PREVIEW）", name: "actionLabel", widget: "string" }
+                  - label: "底部行動圖示"
+                    name: "actionIcon"
+                    widget: "select"
+                    options:
+                      - { label: "連結 (link)", value: "link" }
+                      - { label: "圖庫 (collections)", value: "collections" }
+                      - { label: "外開連結 (open_in_new)", value: "open_in_new" }
+                      - { label: "下載 (download)", value: "download" }
+                  - { label: "點擊連結 URL", name: "link", widget: "string", default: "#" }
+              - { label: "PDF 區段標題", name: "pdfSectionTitle", widget: "string" }
+              - { label: "PDF 區段描述", name: "pdfSectionDescription", widget: "text" }
+              - { label: "下載完整 PDF 按鈕文字", name: "pdfDownloadAllLabel", widget: "string" }
+              - { label: "下載完整 PDF 檔案", name: "pdfDownloadAllFile", widget: "file", required: false }
+              - label: "PDF 清單"
+                name: "pdfs"
+                widget: "list"
+                fields:
+                  - { label: "分類標籤（如「年度報告 / 2023」）", name: "category", widget: "string" }
+                  - { label: "PDF 標題", name: "title", widget: "string" }
+                  - { label: "檔案大小（如 12.4 MB）", name: "size", widget: "string" }
+                  - { label: "PDF 檔案", name: "file", widget: "file", required: false }
+                  - { label: "縮圖（選填）", name: "thumbnail", widget: "image", required: false }
+
+          # ────────── 關於頁 ──────────
+          - label: "關於頁 / About"
+            name: "about"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "瀏覽器分頁標題", name: "pageTitle", widget: "string" }
+              - { label: "頁面小標（英文）", name: "headerEyebrow", widget: "string" }
+              - { label: "頁面大標題", name: "headerTitle", widget: "string" }
+              - { label: "頁面描述", name: "headerDescription", widget: "text" }
+              - { label: "肖像照", name: "portrait", widget: "image", required: false }
+              - { label: "個人介紹標題", name: "bioTitle", widget: "string" }
+              - label: "個人介紹段落"
+                name: "bioParagraphs"
+                widget: "list"
+                field: { label: "段落", name: "paragraph", widget: "text" }
+              - { label: "能力光譜 標題", name: "capabilitiesTitle", widget: "string" }
+              - { label: "能力光譜 英文小標", name: "capabilitiesEyebrow", widget: "string" }
+              - label: "能力光譜（3 項）"
+                name: "capabilities"
+                widget: "list"
+                fields:
+                  - { label: "編號", name: "number", widget: "string" }
+                  - { label: "標題", name: "title", widget: "string" }
+                  - { label: "描述", name: "description", widget: "text" }
+              - { label: "經歷紀事 標題", name: "experiencesTitle", widget: "string" }
+              - { label: "經歷紀事 英文小標", name: "experiencesEyebrow", widget: "string" }
+              - label: "經歷紀事（時間軸）"
+                name: "experiences"
+                widget: "list"
+                fields:
+                  - { label: "年份範圍（如 2022 — NOW）", name: "period", widget: "string" }
+                  - { label: "職稱", name: "title", widget: "string" }
+                  - { label: "描述", name: "description", widget: "text" }
+              - { label: "工具與技術 標題", name: "toolsTitle", widget: "string" }
+              - label: "工具清單"
+                name: "tools"
+                widget: "list"
+                field: { label: "工具名稱", name: "tool", widget: "string" }
+              - { label: "合作領域 標題", name: "clientsTitle", widget: "string" }
+              - label: "合作領域清單"
+                name: "clients"
+                widget: "list"
+                field: { label: "領域", name: "client", widget: "string" }
+
+          # ────────── 聯絡頁 ──────────
+          - label: "聯絡頁 / Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "瀏覽器分頁標題", name: "pageTitle", widget: "string" }
+              - { label: "頁面英文小標", name: "headerEyebrow", widget: "string" }
+              - { label: "頁面大標題", name: "headerTitle", widget: "string" }
+              - { label: "頁面描述", name: "headerDescription", widget: "text" }
+              - { label: "Email 卡片 補充說明", name: "emailDescription", widget: "text" }
+              - { label: "Location 顯示地點", name: "location", widget: "string" }
+              - { label: "Location 卡片 補充說明", name: "locationDescription", widget: "text" }
+              - { label: "價目表標題", name: "pricingTitle", widget: "string" }
+              - label: "價目表（上方兩欄項目）"
+                name: "pricingItems"
+                widget: "list"
+                fields:
+                  - { label: "項目名稱", name: "title", widget: "string" }
+                  - { label: "括弧備註（選填，如「（算張數）」）", name: "note", widget: "string", required: false }
+                  - { label: "價格", name: "price", widget: "string" }
+              - label: "價目表（底部跨整列項目）"
+                name: "pricingFullWidth"
+                widget: "object"
+                fields:
+                  - { label: "項目名稱", name: "title", widget: "string" }
+                  - { label: "括弧備註（選填）", name: "note", widget: "string", required: false }
+                  - { label: "價格", name: "price", widget: "string" }
+              - { label: "價目表底部說明", name: "pricingFootnote", widget: "text" }
+              - { label: "FAQ 區段標題", name: "faqTitle", widget: "string" }
+              - label: "FAQ 列表"
+                name: "faq"
+                widget: "list"
+                fields:
+                  - { label: "問題", name: "question", widget: "string" }
+                  - { label: "答案（支援多行：直接 Enter 換行即可）", name: "answer", widget: "text" }

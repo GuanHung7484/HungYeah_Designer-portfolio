@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title data-bind="contact.pageTitle">聯絡 | DESIGNER PORTFOLIO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="assets/tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link href="assets/styles.css" rel="stylesheet" />
+</head>
+<body class="min-h-screen flex flex-col">
+
+<nav data-sticky class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant transition-transform duration-300">
+  <div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-full mx-auto">
+    <a href="index.html" data-bind="site.siteName" class="font-headline-md text-headline-md font-medium text-on-surface">DESIGNER PORTFOLIO</a>
+    <div class="hidden md:flex gap-unit-lg items-center">
+      <a data-bind="site.navPortfolio" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="portfolio.html">作品</a>
+      <a data-bind="site.navAbout" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="about.html">關於</a>
+      <a data-bind="site.navContact" class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="contact.html">聯絡</a>
+    </div>
+    <button data-menu-toggle class="md:hidden" aria-label="開啟選單">
+      <span class="material-symbols-outlined text-on-surface">menu</span>
+    </button>
+  </div>
+  <div data-mobile-menu class="hidden md:hidden border-t border-outline-variant bg-surface px-margin-mobile py-unit-md">
+    <a data-bind="site.navPortfolio" class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="portfolio.html">作品</a>
+    <a data-bind="site.navAbout" class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="about.html">關於</a>
+    <a data-bind="site.navContact" class="block py-unit-sm font-label-md text-label-md text-primary" href="contact.html">聯絡</a>
+  </div>
+</nav>
+
+<main class="pt-32 pb-unit-xl px-margin-mobile md:px-margin-desktop flex-grow">
+
+  <header class="mb-unit-xl reveal">
+    <span data-bind="contact.headerEyebrow" class="font-label-sm text-label-sm text-primary tracking-widest">CONTACT</span>
+    <h1 data-bind="contact.headerTitle" class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-unit-md mt-unit-sm text-on-surface">展開合作對話</h1>
+    <p data-bind="contact.headerDescription" class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+      無論是品牌升級、攝影委託或產品介面設計，還是 UI/UX（AI）系統專案建置或 APP 設計，歡迎留下訊息。多數來信將於 2-3 個工作日內回覆。
+    </p>
+  </header>
+
+  <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter reveal">
+
+    <!-- Contact info -->
+    <aside class="md:col-span-5 flex flex-col gap-unit-lg">
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
+        <span class="font-label-sm text-label-sm text-primary tracking-widest">EMAIL</span>
+        <a href="mailto:vkopkimo@gmail.com" data-bind="site.email" class="block font-headline-md text-headline-md text-on-surface mt-unit-sm hover:text-primary transition-colors break-all">vkopkimo@gmail.com</a>
+        <p data-bind="contact.emailDescription" class="font-body-md text-body-md text-on-surface-variant mt-unit-sm">最直接的聯絡方式。請簡述需求、時程與預算範圍。</p>
+      </div>
+
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
+        <span class="font-label-sm text-label-sm text-primary tracking-widest">LOCATION</span>
+        <p data-bind="contact.location" class="font-headline-md text-headline-md text-on-surface mt-unit-sm">台北 · 遠端</p>
+        <p data-bind="contact.locationDescription" class="font-body-md text-body-md text-on-surface-variant mt-unit-sm">可配合台灣區域內遠端視訊會議；亦接受遠端合作案。</p>
+      </div>
+
+      <!-- 價目表 -->
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
+        <span class="font-label-sm text-label-sm text-primary tracking-widest">PRICE LIST</span>
+        <h3 data-bind="contact.pricingTitle" class="font-headline-md text-headline-md text-on-surface mt-unit-sm mb-unit-md">價目表</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-unit-lg" data-bind-list="contact.pricingItems">
+          <template>
+            <div class="py-unit-md border-b border-outline-variant flex flex-col">
+              <h4 class="text-[18px] leading-7 font-semibold text-on-surface mb-unit-xs">
+                <span data-bind="title"></span><span data-bind="note" class="text-label-sm font-normal text-on-surface-variant opacity-80 ml-1"></span>
+              </h4>
+              <div data-bind="price" class="mt-auto font-label-md text-label-md text-primary"></div>
+            </div>
+          </template>
+          <!-- 預設靜態內容（content.json 載入後會被取代） -->
+          <div class="py-unit-md border-b border-outline-variant flex flex-col">
+            <h4 class="text-[18px] leading-7 font-semibold text-on-surface mb-unit-xs">Logo 設計</h4>
+            <div class="mt-auto font-label-md text-label-md text-primary">NT$ 1,500 ～ 3,000</div>
+          </div>
+          <div class="py-unit-md border-b border-outline-variant flex flex-col">
+            <h4 class="text-[18px] leading-7 font-semibold text-on-surface mb-unit-xs">Banner 設計<span class="text-label-sm font-normal text-on-surface-variant opacity-80 ml-1">（算張數）</span></h4>
+            <div class="mt-auto font-label-md text-label-md text-primary">NT$ 1,000 ～ 2,500</div>
+          </div>
+          <div class="py-unit-md border-b border-outline-variant flex flex-col">
+            <h4 class="text-[18px] leading-7 font-semibold text-on-surface mb-unit-xs">IG 貼文<span class="text-label-sm font-normal text-on-surface-variant opacity-80 ml-1">（包含 1 張宣傳圖）</span></h4>
+            <div class="mt-auto font-label-md text-label-md text-primary">NT$ 500 ～ 1,000</div>
+          </div>
+          <div class="py-unit-md border-b border-outline-variant flex flex-col">
+            <h4 class="text-[18px] leading-7 font-semibold text-on-surface mb-unit-xs">商品攝影<span class="text-label-sm font-normal text-on-surface-variant opacity-80 ml-1">（算張數，包含去背編修美化）</span></h4>
+            <div class="mt-auto font-label-md text-label-md text-primary">NT$ 500 ～ 3,000</div>
+          </div>
+        </div>
+
+        <!-- 底部：UI/UX 跨整列 -->
+        <div class="py-unit-md">
+          <h4 class="text-[18px] leading-7 font-semibold text-on-surface mb-unit-xs">
+            <span data-bind="contact.pricingFullWidth.title">UI/UX（AI）網站專案建置或 APP 製作</span><span data-bind="contact.pricingFullWidth.note" class="text-label-sm font-normal text-on-surface-variant opacity-80 ml-1"></span>
+          </h4>
+          <div data-bind="contact.pricingFullWidth.price" class="font-label-md text-label-md text-primary">NT$ 內洽</div>
+        </div>
+        <p data-bind="contact.pricingFootnote" class="font-label-sm text-label-sm text-on-surface-variant mt-unit-md opacity-70">＊實際報價依專案複雜度與交付範圍調整，洽談後提供正式報價單。</p>
+      </div>
+    </aside>
+
+    <!-- Form -->
+    <form data-contact-form class="md:col-span-7 card-border bg-surface-container p-unit-lg md:p-unit-xl rounded-lg flex flex-col gap-unit-md">
+      <div>
+        <label class="font-label-sm text-label-sm text-primary tracking-widest block mb-unit-sm" for="name">姓名</label>
+        <input class="form-field" id="name" name="name" placeholder="您的姓名或公司名稱" required type="text" />
+      </div>
+      <div>
+        <label class="font-label-sm text-label-sm text-primary tracking-widest block mb-unit-sm" for="email">電子郵件</label>
+        <input class="form-field" id="email" name="email" placeholder="name@company.com" required type="email" />
+      </div>
+      <div>
+        <label class="font-label-sm text-label-sm text-primary tracking-widest block mb-unit-sm" for="topic">合作類型</label>
+        <select class="form-field" id="topic" name="topic" required>
+          <option value="">請選擇⋯</option>
+          <option>攝影委託</option>
+          <option>品牌與平面設計</option>
+          <option>UI/UX 與產品設計</option>
+          <option>AI 開發協作</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <div>
+        <label class="font-label-sm text-label-sm text-primary tracking-widest block mb-unit-sm" for="budget">預算範圍（選填）</label>
+        <input class="form-field" id="budget" name="budget" placeholder="例：NT$5,000-10000" type="text" />
+      </div>
+      <div>
+        <label class="font-label-sm text-label-sm text-primary tracking-widest block mb-unit-sm" for="message">需求說明</label>
+        <textarea class="form-field" id="message" name="message" placeholder="請簡述專案背景、目標與期望完成時間。" required rows="6"></textarea>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-unit-md pt-unit-md border-t border-outline-variant">
+        <p data-form-status class="hidden font-label-sm text-label-sm text-primary"></p>
+        <button type="submit" class="inline-flex items-center gap-unit-sm bg-primary text-on-primary px-unit-xl py-unit-md font-label-md text-label-md rounded-lg hover:brightness-110 transition-all md:ml-auto">
+          送出訊息
+          <span class="material-symbols-outlined text-[18px]">north_east</span>
+        </button>
+      </div>
+    </form>
+
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-unit-xl mt-unit-xl border-t border-outline-variant reveal">
+    <div class="flex justify-between items-end mb-unit-xl">
+      <h2 data-bind="contact.faqTitle" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">常見問題</h2>
+      <span class="font-label-sm text-label-sm text-primary tracking-widest hidden md:block">FAQ</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter" data-bind-list="contact.faq">
+      <template>
+        <div class="card-border bg-surface-container p-unit-lg rounded-lg">
+          <h3 data-bind="question" class="font-headline-md text-headline-md text-on-surface mb-unit-sm"></h3>
+          <p data-bind="answer" class="font-body-md text-body-md text-on-surface-variant whitespace-pre-line"></p>
+        </div>
+      </template>
+      <!-- 預設靜態內容（content.json 載入後會被取代） -->
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-sm">合作流程是怎麼進行的？</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">先以一次 30 分鐘的免費諮詢釐清目標與範疇；接著提供書面提案、報價與時程，雙方確認後簽約啟動。</p>
+      </div>
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-sm">最小委託規模工作日是？</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant whitespace-pre-line">01. 商品攝影類 1-2 個工作日起接案。
+02. 平面 Banner ＆ DM 設計大約（1 張 2-3 個工作天）。
+03. UI/UX（AI）網站專案建置和 APP 製作與溝通協調至少 4 週左右，不過要看整體流程規模大小來增加或減少工作天，以確保研究、設計與交付的完整度。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="w-full mt-auto bg-surface-container border-t border-outline-variant">
+  <div class="flex flex-col md:flex-row justify-between items-center py-unit-xl px-margin-mobile md:px-margin-desktop w-full gap-unit-md">
+    <div data-bind="site.siteName" class="font-label-md text-label-md font-bold text-on-surface">DESIGNER PORTFOLIO</div>
+    <p data-bind="site.copyright" class="font-label-sm text-label-sm text-on-surface-variant opacity-60">© 2026 Designer Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/content.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

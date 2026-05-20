@@ -1,0 +1,110 @@
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+body {
+  background-color: #121212;
+  color: #e5e2e1;
+}
+
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(18,18,18,0) 0%, rgba(18,18,18,1) 100%);
+}
+
+.card-border {
+  border: 1px solid #333333;
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-border:hover {
+  border-color: #a89a8e;
+  transform: translateY(-4px);
+}
+
+.active-filter {
+  color: #d3c4b7;
+  border-bottom: 2px solid #d3c4b7;
+}
+
+/* Replaceable image placeholder — swap the <div class="img-placeholder"> for an <img> when you have artwork */
+.img-placeholder {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(208, 196, 188, 0.04) 0,
+      rgba(208, 196, 188, 0.04) 12px,
+      transparent 12px,
+      transparent 24px
+    ),
+    linear-gradient(180deg, #2a2a2a 0%, #1c1b1b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #998f87;
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+
+.img-placeholder .ph-icon {
+  font-size: 56px;
+  color: #4d453f;
+  opacity: 0.7;
+}
+
+/* Reveal-on-scroll initial state */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Form inputs — light background, black text for readability */
+.form-field {
+  background: #f5f1ec;
+  border: 1px solid #4d453f;
+  color: #111111;
+  padding: 14px 16px;
+  width: 100%;
+  border-radius: 0.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-field:focus {
+  outline: none;
+  border-color: #d3c4b7;
+  box-shadow: 0 0 0 3px rgba(211, 196, 183, 0.18);
+}
+
+.form-field::placeholder {
+  color: #6f6760;
+  opacity: 1;
+}
+
+/* native dropdown arrow on a light background */
+select.form-field {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23111' d='M6 8 0 0h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}

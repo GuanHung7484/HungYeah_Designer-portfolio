@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+
+# 純靜態網站：不需要任何建置指令。
+# 推到 GitHub 後 Netlify 直接把整個資料夾當作靜態網站發佈。
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/content.json"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"

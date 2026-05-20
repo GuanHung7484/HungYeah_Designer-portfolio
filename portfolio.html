@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>作品集 | DESIGNER PORTFOLIO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="assets/tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link href="assets/styles.css" rel="stylesheet" />
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- TopNavBar -->
+<nav data-sticky class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant transition-transform duration-300">
+  <div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-full mx-auto">
+    <a href="index.html" class="font-headline-md text-headline-md font-medium text-on-surface">DESIGNER PORTFOLIO</a>
+    <div class="hidden md:flex gap-unit-lg items-center">
+      <a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="portfolio.html">作品</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="about.html">關於</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="contact.html">聯絡</a>
+    </div>
+    <button data-menu-toggle class="md:hidden" aria-label="開啟選單">
+      <span class="material-symbols-outlined text-on-surface">menu</span>
+    </button>
+  </div>
+  <div data-mobile-menu class="hidden md:hidden border-t border-outline-variant bg-surface px-margin-mobile py-unit-md">
+    <a class="block py-unit-sm font-label-md text-label-md text-primary" href="portfolio.html">作品</a>
+    <a class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="about.html">關於</a>
+    <a class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="contact.html">聯絡</a>
+  </div>
+</nav>
+
+<main class="pt-32 pb-unit-xl px-margin-mobile md:px-margin-desktop flex-grow">
+
+  <!-- Page Header -->
+  <header class="mb-unit-xl reveal">
+    <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-unit-md text-on-surface">專業作品集</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+      精選多年在品牌識別、用戶體驗及攝影藝術領域的實踐成果，展現對細節與質感的極致追求。
+    </p>
+  </header>
+
+  <!-- Filters -->
+  <div class="flex flex-wrap gap-unit-md mb-unit-xl border-b border-outline-variant pb-unit-sm">
+    <button data-filter="all" class="font-label-md text-label-md pb-unit-xs transition-colors text-primary active-filter">全部作品</button>
+    <button data-filter="photography" class="font-label-md text-label-md pb-unit-xs transition-colors text-on-surface-variant hover:text-primary">攝影</button>
+    <button data-filter="graphic" class="font-label-md text-label-md pb-unit-xs transition-colors text-on-surface-variant hover:text-primary">平面設計</button>
+    <button data-filter="ui" class="font-label-md text-label-md pb-unit-xs transition-colors text-on-surface-variant hover:text-primary">UI/UX</button>
+    <button data-filter="pdf" class="font-label-md text-label-md pb-unit-xs transition-colors text-on-surface-variant hover:text-primary">PDF 文件</button>
+  </div>
+
+  <!-- Portfolio Cards Grid -->
+  <section class="grid grid-cols-12 gap-gutter mb-unit-xl">
+    <!-- UI/UX Project -->
+    <div data-category="ui" class="col-span-12 md:col-span-8 lg:col-span-6 flex flex-col card-border bg-surface-container overflow-hidden group reveal">
+      <div class="aspect-video relative overflow-hidden">
+        <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="UI / Dashboard" data-src="images/project-ui.jpg">
+          <span class="material-symbols-outlined ph-icon">dashboard</span>
+        </div>
+        <div class="absolute top-unit-md left-unit-md bg-surface-container-low/80 backdrop-blur-sm px-unit-sm py-1 border border-outline-variant rounded-lg">
+          <span class="font-label-sm text-label-sm uppercase">UI/UX</span>
+        </div>
+      </div>
+      <div class="p-unit-lg flex flex-col flex-grow">
+        <div class="flex justify-between items-start mb-unit-sm">
+          <h3 class="font-headline-md text-headline-md">資產管理系統重新設計</h3>
+          <a class="text-primary hover:opacity-70" href="#" aria-label="開啟專案">
+            <span class="material-symbols-outlined">north_east</span>
+          </a>
+        </div>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-unit-lg flex-grow">針對企業級用戶設計的資產追蹤介面，強化數據可視化與操作流暢度，降低認知負荷。</p>
+        <div class="flex items-center gap-unit-sm pt-unit-md border-t border-outline-variant">
+          <span class="material-symbols-outlined text-sm">link</span>
+          <span class="font-label-sm text-label-sm">LIVE PREVIEW</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photography Project -->
+    <div data-category="photography" class="col-span-12 md:col-span-4 lg:col-span-3 flex flex-col card-border bg-surface-container overflow-hidden group reveal">
+      <div class="aspect-[3/4] relative overflow-hidden">
+        <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="Architecture" data-src="images/project-architecture.jpg">
+          <span class="material-symbols-outlined ph-icon">apartment</span>
+        </div>
+        <div class="absolute top-unit-md left-unit-md bg-surface-container-low/80 backdrop-blur-sm px-unit-sm py-1 border border-outline-variant rounded-lg">
+          <span class="font-label-sm text-label-sm uppercase">攝影</span>
+        </div>
+      </div>
+      <div class="p-unit-md flex flex-col flex-grow">
+        <h3 class="font-label-md text-label-md font-bold mb-unit-xs">城市光影系列：築</h3>
+        <p class="font-label-sm text-label-sm text-on-surface-variant mb-unit-md">探索現代建築與自然光影的幾何對話。</p>
+        <div class="mt-auto flex items-center gap-unit-sm">
+          <span class="material-symbols-outlined text-sm">collections</span>
+          <span class="font-label-sm text-label-sm">VIEW GALLERY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graphic Design -->
+    <div data-category="graphic" class="col-span-12 md:col-span-4 lg:col-span-3 flex flex-col card-border bg-surface-container overflow-hidden group reveal">
+      <div class="aspect-[3/4] relative overflow-hidden">
+        <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="Brand Identity" data-src="images/project-brand.jpg">
+          <span class="material-symbols-outlined ph-icon">style</span>
+        </div>
+        <div class="absolute top-unit-md left-unit-md bg-surface-container-low/80 backdrop-blur-sm px-unit-sm py-1 border border-outline-variant rounded-lg">
+          <span class="font-label-sm text-label-sm uppercase">平面設計</span>
+        </div>
+      </div>
+      <div class="p-unit-md flex flex-col flex-grow">
+        <h3 class="font-label-md text-label-md font-bold mb-unit-xs">Vanguard 品牌識別系統</h3>
+        <p class="font-label-sm text-label-sm text-on-surface-variant mb-unit-md">為高端律師事務所打造的穩重、權威視覺語言。</p>
+        <div class="mt-auto flex items-center gap-unit-sm">
+          <span class="material-symbols-outlined text-sm">open_in_new</span>
+          <span class="font-label-sm text-label-sm">PROJECT DETAILS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PDF Section -->
+  <section data-category="pdf" class="bg-surface-container-low p-unit-lg md:p-unit-xl border border-outline-variant rounded-lg reveal">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-unit-lg mb-unit-xl">
+      <div>
+        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-unit-sm">PDF 專區</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+          可供離線閱覽的專業文件與完整作品集報告。所有文件均經過優化，適合高清列印與專業審閱。
+        </p>
+      </div>
+      <a href="#" class="bg-primary-container text-on-primary-container px-unit-lg py-unit-md font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-unit-sm rounded-lg">
+        <span class="material-symbols-outlined">download</span>
+        下載完整 PDF 作品集
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      <!-- PDF Card 1 -->
+      <div class="card-border bg-surface p-unit-md flex flex-col">
+        <div class="aspect-[3/4] mb-unit-md relative overflow-hidden border border-outline-variant rounded-lg img-placeholder" data-label="PDF" data-src="images/pdf-1.jpg">
+          <span class="material-symbols-outlined ph-icon">description</span>
+        </div>
+        <div class="flex flex-col flex-grow">
+          <span class="font-label-sm text-label-sm text-primary mb-1">年度報告 / 2023</span>
+          <h4 class="font-label-md text-label-md font-bold mb-unit-sm">UI 設計規範與組件庫</h4>
+          <div class="mt-auto pt-unit-md border-t border-outline-variant flex justify-between items-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant">12.4 MB</span>
+            <a class="text-on-surface hover:text-primary flex items-center gap-1" href="#">
+              <span class="material-symbols-outlined text-sm">download</span>
+              <span class="font-label-sm text-label-sm">DOWNLOAD</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- PDF Card 2 -->
+      <div class="card-border bg-surface p-unit-md flex flex-col">
+        <div class="aspect-[3/4] mb-unit-md relative overflow-hidden border border-outline-variant rounded-lg img-placeholder" data-label="PDF" data-src="images/pdf-2.jpg">
+          <span class="material-symbols-outlined ph-icon">description</span>
+        </div>
+        <div class="flex flex-col flex-grow">
+          <span class="font-label-sm text-label-sm text-primary mb-1">作品集 / 精選</span>
+          <h4 class="font-label-md text-label-md font-bold mb-unit-sm">攝影集：光影流轉</h4>
+          <div class="mt-auto pt-unit-md border-t border-outline-variant flex justify-between items-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant">25.8 MB</span>
+            <a class="text-on-surface hover:text-primary flex items-center gap-1" href="#">
+              <span class="material-symbols-outlined text-sm">download</span>
+              <span class="font-label-sm text-label-sm">DOWNLOAD</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- PDF Card 3 -->
+      <div class="card-border bg-surface p-unit-md flex flex-col">
+        <div class="aspect-[3/4] mb-unit-md relative overflow-hidden border border-outline-variant rounded-lg img-placeholder" data-label="PDF" data-src="images/pdf-3.jpg">
+          <span class="material-symbols-outlined ph-icon">description</span>
+        </div>
+        <div class="flex flex-col flex-grow">
+          <span class="font-label-sm text-label-sm text-primary mb-1">研究 / Case Study</span>
+          <h4 class="font-label-md text-label-md font-bold mb-unit-sm">用戶研究與介面演進報告</h4>
+          <div class="mt-auto pt-unit-md border-t border-outline-variant flex justify-between items-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant">8.2 MB</span>
+            <a class="text-on-surface hover:text-primary flex items-center gap-1" href="#">
+              <span class="material-symbols-outlined text-sm">download</span>
+              <span class="font-label-sm text-label-sm">DOWNLOAD</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- PDF Card 4 -->
+      <div class="card-border bg-surface p-unit-md flex flex-col">
+        <div class="aspect-[3/4] mb-unit-md relative overflow-hidden border border-outline-variant rounded-lg img-placeholder" data-label="PDF" data-src="images/pdf-4.jpg">
+          <span class="material-symbols-outlined ph-icon">description</span>
+        </div>
+        <div class="flex flex-col flex-grow">
+          <span class="font-label-sm text-label-sm text-primary mb-1">品牌 / Brand Kit</span>
+          <h4 class="font-label-md text-label-md font-bold mb-unit-sm">品牌視覺準則 (Vanguard)</h4>
+          <div class="mt-auto pt-unit-md border-t border-outline-variant flex justify-between items-center">
+            <span class="font-label-sm text-label-sm text-on-surface-variant">15.1 MB</span>
+            <a class="text-on-surface hover:text-primary flex items-center gap-1" href="#">
+              <span class="material-symbols-outlined text-sm">download</span>
+              <span class="font-label-sm text-label-sm">DOWNLOAD</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container border-t border-outline-variant">
+  <div class="flex flex-col md:flex-row justify-between items-center py-unit-xl px-margin-mobile md:px-margin-desktop w-full gap-unit-md">
+    <div class="font-label-md text-label-md font-bold text-on-surface">DESIGNER PORTFOLIO</div>
+    <p class="font-label-sm text-label-sm text-on-surface-variant opacity-60">© 2026 Designer Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/content.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>
