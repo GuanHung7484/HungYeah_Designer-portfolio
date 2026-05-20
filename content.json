@@ -87,9 +87,9 @@
       {
         "category": "ui",
         "categoryLabel": "UI/UX",
-        "title": "資產管理系統重新設計",
-        "description": "針對企業級用戶設計的資產追蹤介面，強化數據可視化與操作流暢度，降低認知負荷。",
-        "image": "images/project-ui.jpg",
+        "title": "查帳核對系統網站",
+        "description": "針對公司內部查帳人員，要方便快速查帳核對系統網站，可以減少工作時間，更有效率。",
+        "image": "/images/uploads/螢幕擷取畫面-2026-05-20-154915.png",
         "actionLabel": "LIVE PREVIEW",
         "actionIcon": "link",
         "link": "#"
@@ -99,7 +99,7 @@
         "categoryLabel": "攝影",
         "title": "城市光影系列：築",
         "description": "探索現代建築與自然光影的幾何對話。",
-        "image": "images/project-architecture.jpg",
+        "image": "/images/uploads/02.jpg",
         "actionLabel": "VIEW GALLERY",
         "actionIcon": "collections",
         "link": "#"
@@ -113,6 +113,16 @@
         "actionLabel": "PROJECT DETAILS",
         "actionIcon": "open_in_new",
         "link": "#"
+      },
+      {
+        "link": "#",
+        "category": "graphic",
+        "categoryLabel": "DM",
+        "title": "DM",
+        "description": "美甲DM",
+        "image": "/images/uploads/貝斯蕾妮_dm_out-01.jpg",
+        "actionLabel": "LIVE PREVIEW",
+        "actionIcon": "collections"
       }
     ],
     "pdfDownloadAllFile": "",
