@@ -22,13 +22,15 @@
         "title": "查帳審核系統 (UI/UX)",
         "subtitle": "LOGIC / INTERFACE / DATA",
         "image": "/images/uploads/螢幕擷取畫面-2026-05-20-154915.png",
-        "link": "portfolio.html"
+        "link": "portfolio.html",
+        "imageFocus": "center"
       },
       {
         "title": "商品攝影系列",
         "subtitle": "AESTHETIC / CRAFT / STILL LIFE",
         "image": "/images/uploads/02.jpg",
-        "link": "portfolio.html"
+        "link": "portfolio.html",
+        "imageFocus": "top"
       }
     ],
     "featuredEyebrow": "SELECTED PROJECTS",
@@ -85,44 +87,48 @@
     ],
     "works": [
       {
-        "category": "ui",
+        "actionIcon": "link",
         "categoryLabel": "UI/UX",
         "title": "查帳核對系統網站",
-        "description": "針對公司內部查帳人員，要方便快速查帳核對系統網站，可以減少工作時間，更有效率。",
+        "link": "#",
         "image": "/images/uploads/螢幕擷取畫面-2026-05-20-154915.png",
-        "actionLabel": "LIVE PREVIEW",
-        "actionIcon": "link",
-        "link": "#"
+        "description": "針對公司內部查帳人員，要方便快速查帳核對系統網站，可以減少工作時間，更有效率。",
+        "imageFocus": "center",
+        "category": "ui",
+        "actionLabel": "LIVE PREVIEW"
       },
       {
-        "category": "photography",
+        "actionIcon": "collections",
         "categoryLabel": "攝影",
         "title": "城市光影系列：築",
-        "description": "探索現代建築與自然光影的幾何對話。",
+        "link": "#",
         "image": "/images/uploads/02.jpg",
-        "actionLabel": "VIEW GALLERY",
-        "actionIcon": "collections",
-        "link": "#"
+        "description": "探索現代建築與自然光影的幾何對話。",
+        "imageFocus": "top",
+        "category": "photography",
+        "actionLabel": "VIEW GALLERY"
       },
       {
-        "category": "graphic",
+        "actionIcon": "open_in_new",
         "categoryLabel": "平面設計",
         "title": "Vanguard 品牌識別系統",
-        "description": "為高端律師事務所打造的穩重、權威視覺語言。",
+        "link": "#",
         "image": "/images/uploads/10-001.png",
-        "actionLabel": "PROJECT DETAILS",
-        "actionIcon": "open_in_new",
-        "link": "#"
+        "description": "為高端律師事務所打造的穩重、權威視覺語言。",
+        "imageFocus": "center",
+        "category": "graphic",
+        "actionLabel": "PROJECT DETAILS"
       },
       {
-        "link": "#",
-        "category": "graphic",
+        "actionIcon": "collections",
         "categoryLabel": "DM",
         "title": "DM",
-        "description": "美甲DM",
+        "link": "#",
         "image": "/images/uploads/貝斯蕾妮_dm_out-01.jpg",
-        "actionLabel": "LIVE PREVIEW",
-        "actionIcon": "collections"
+        "description": "美甲DM",
+        "imageFocus": "center",
+        "category": "graphic",
+        "actionLabel": "LIVE PREVIEW"
       }
     ],
     "pdfDownloadAllFile": "",
@@ -206,7 +212,8 @@
     ],
     "portrait": "images/portrait.jpg",
     "headerEyebrow": "ABOUT",
-    "toolsTitle": "工具與技術"
+    "toolsTitle": "工具與技術",
+    "portraitFocus": "center"
   },
   "contact": {
     "emailDescription": "最直接的聯絡方式。請簡述需求、時程與預算範圍。",
