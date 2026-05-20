@@ -48,6 +48,7 @@ collections:
               - label: "精選作品（首頁 2 張）"
                 name: "featuredWorks"
                 widget: "list"
+                summary: "{{fields.title}}"
                 fields:
                   - { label: "標題", name: "title", widget: "string" }
                   - { label: "副標（英文小字）", name: "subtitle", widget: "string" }
@@ -58,6 +59,7 @@ collections:
                 widget: "list"
                 max: 3
                 min: 3
+                summary: "{{fields.number}}  {{fields.title}}"
                 fields:
                   - { label: "編號（如 01.）", name: "number", widget: "string" }
                   - { label: "標題", name: "title", widget: "string" }
@@ -78,6 +80,7 @@ collections:
               - label: "作品清單"
                 name: "works"
                 widget: "list"
+                summary: "{{fields.title}}  ({{fields.categoryLabel}})"
                 fields:
                   - label: "分類（決定篩選器歸屬）"
                     name: "category"
@@ -107,6 +110,7 @@ collections:
               - label: "PDF 清單"
                 name: "pdfs"
                 widget: "list"
+                summary: "{{fields.title}}  —  {{fields.size}}"
                 fields:
                   - { label: "分類標籤（如「年度報告 / 2023」）", name: "category", widget: "string" }
                   - { label: "PDF 標題", name: "title", widget: "string" }
@@ -129,12 +133,14 @@ collections:
               - label: "個人介紹段落"
                 name: "bioParagraphs"
                 widget: "list"
+                summary: "{{fields.paragraph}}"
                 field: { label: "段落", name: "paragraph", widget: "text" }
               - { label: "能力光譜 標題", name: "capabilitiesTitle", widget: "string" }
               - { label: "能力光譜 英文小標", name: "capabilitiesEyebrow", widget: "string" }
               - label: "能力光譜（3 項）"
                 name: "capabilities"
                 widget: "list"
+                summary: "{{fields.number}}  {{fields.title}}"
                 fields:
                   - { label: "編號", name: "number", widget: "string" }
                   - { label: "標題", name: "title", widget: "string" }
@@ -144,6 +150,7 @@ collections:
               - label: "經歷紀事（時間軸）"
                 name: "experiences"
                 widget: "list"
+                summary: "{{fields.period}}  —  {{fields.title}}"
                 fields:
                   - { label: "年份範圍（如 2022 — NOW）", name: "period", widget: "string" }
                   - { label: "職稱", name: "title", widget: "string" }
@@ -152,11 +159,13 @@ collections:
               - label: "工具清單"
                 name: "tools"
                 widget: "list"
+                summary: "{{fields.tool}}"
                 field: { label: "工具名稱", name: "tool", widget: "string" }
               - { label: "合作領域 標題", name: "clientsTitle", widget: "string" }
               - label: "合作領域清單"
                 name: "clients"
                 widget: "list"
+                summary: "{{fields.client}}"
                 field: { label: "領域", name: "client", widget: "string" }
 
           # ────────── 聯絡頁 ──────────
@@ -176,6 +185,7 @@ collections:
               - label: "價目表（上方兩欄項目）"
                 name: "pricingItems"
                 widget: "list"
+                summary: "{{fields.title}}  |  {{fields.price}}"
                 fields:
                   - { label: "項目名稱", name: "title", widget: "string" }
                   - { label: "括弧備註（選填，如「（算張數）」）", name: "note", widget: "string", required: false }
@@ -192,6 +202,7 @@ collections:
               - label: "FAQ 列表"
                 name: "faq"
                 widget: "list"
+                summary: "{{fields.question}}"
                 fields:
                   - { label: "問題", name: "question", widget: "string" }
                   - { label: "答案（支援多行：直接 Enter 換行即可）", name: "answer", widget: "text" }
