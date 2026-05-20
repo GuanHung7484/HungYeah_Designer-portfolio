@@ -8,7 +8,14 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+// Observe both initial elements AND any added later by content.js (CMS-rendered lists)
+function observeReveal(root) {
+  (root || document).querySelectorAll('.reveal:not(.is-visible)').forEach((el) => {
+    revealObserver.observe(el);
+  });
+}
+observeReveal();
+document.addEventListener('content:loaded', () => observeReveal());
 
 // Hide-on-scroll-down, show-on-scroll-up top nav
 let lastScroll = 0;
@@ -27,28 +34,31 @@ if (nav) {
   }, { passive: true });
 }
 
-// Portfolio filter buttons (only present on portfolio.html)
-const filterButtons = document.querySelectorAll('[data-filter]');
-const filterItems = document.querySelectorAll('[data-category]');
-
-if (filterButtons.length) {
+// Portfolio filter buttons (only present on portfolio.html).
+// Items are re-queried on every click so CMS-added works are included.
+function bindFilters() {
+  const filterButtons = document.querySelectorAll('[data-filter]');
+  if (!filterButtons.length) return;
   filterButtons.forEach((btn) => {
+    if (btn.dataset.filterBound === '1') return;
+    btn.dataset.filterBound = '1';
     btn.addEventListener('click', () => {
       const target = btn.dataset.filter;
-      filterButtons.forEach((b) => {
+      document.querySelectorAll('[data-filter]').forEach((b) => {
         b.classList.remove('active-filter', 'text-primary');
         b.classList.add('text-on-surface-variant');
       });
       btn.classList.add('active-filter', 'text-primary');
       btn.classList.remove('text-on-surface-variant');
-
-      filterItems.forEach((item) => {
+      document.querySelectorAll('[data-category]').forEach((item) => {
         const match = target === 'all' || item.dataset.category === target;
         item.style.display = match ? '' : 'none';
       });
     });
   });
 }
+bindFilters();
+document.addEventListener('content:loaded', () => bindFilters());
 
 // Mobile menu toggle
 const menuToggle = document.querySelector('[data-menu-toggle]');
