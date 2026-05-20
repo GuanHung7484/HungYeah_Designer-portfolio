@@ -75,6 +75,27 @@ body {
   transform: translateY(0);
 }
 
+/* Image focus point — controls which part of the image stays visible when cropped.
+ * The wrapper has data-focus="top|bottom|left|right|center|top-left|...". The image (or
+ * placeholder background) inside is positioned accordingly. Default (center) needs no override.
+ */
+[data-focus="top"] > img,
+[data-focus="top"] > .img-placeholder { object-position: center top; background-position: center top, center top; }
+[data-focus="bottom"] > img,
+[data-focus="bottom"] > .img-placeholder { object-position: center bottom; background-position: center bottom, center bottom; }
+[data-focus="left"] > img,
+[data-focus="left"] > .img-placeholder { object-position: left center; background-position: left center, left center; }
+[data-focus="right"] > img,
+[data-focus="right"] > .img-placeholder { object-position: right center; background-position: right center, right center; }
+[data-focus="top-left"] > img,
+[data-focus="top-left"] > .img-placeholder { object-position: left top; background-position: left top, left top; }
+[data-focus="top-right"] > img,
+[data-focus="top-right"] > .img-placeholder { object-position: right top; background-position: right top, right top; }
+[data-focus="bottom-left"] > img,
+[data-focus="bottom-left"] > .img-placeholder { object-position: left bottom; background-position: left bottom, left bottom; }
+[data-focus="bottom-right"] > img,
+[data-focus="bottom-right"] > .img-placeholder { object-position: right bottom; background-position: right bottom, right bottom; }
+
 /* Lightbox — click an image to view full-size */
 .cursor-zoom-in {
   cursor: zoom-in;

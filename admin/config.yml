@@ -53,6 +53,20 @@ collections:
                   - { label: "標題", name: "title", widget: "string" }
                   - { label: "副標（英文小字）", name: "subtitle", widget: "string" }
                   - { label: "圖片", name: "image", widget: "image", required: false }
+                  - label: "圖片焦點（裁切時保留哪個部位；婚紗等人像選「上方」可避免切到頭）"
+                    name: "imageFocus"
+                    widget: "select"
+                    default: "center"
+                    options:
+                      - { label: "中間（預設）", value: "center" }
+                      - { label: "上方（保留上半部 / 人像）", value: "top" }
+                      - { label: "下方（保留下半部）", value: "bottom" }
+                      - { label: "左側", value: "left" }
+                      - { label: "右側", value: "right" }
+                      - { label: "左上", value: "top-left" }
+                      - { label: "右上", value: "top-right" }
+                      - { label: "左下", value: "bottom-left" }
+                      - { label: "右下", value: "bottom-right" }
                   - { label: "連結", name: "link", widget: "string", default: "portfolio.html" }
               - label: "服務（3 項）"
                 name: "services"
@@ -93,6 +107,20 @@ collections:
                   - { label: "作品標題", name: "title", widget: "string" }
                   - { label: "作品描述", name: "description", widget: "text" }
                   - { label: "作品封面圖", name: "image", widget: "image", required: false }
+                  - label: "圖片焦點（裁切時保留哪個部位；婚紗等人像選「上方」可避免切到頭）"
+                    name: "imageFocus"
+                    widget: "select"
+                    default: "center"
+                    options:
+                      - { label: "中間（預設）", value: "center" }
+                      - { label: "上方（保留上半部 / 人像）", value: "top" }
+                      - { label: "下方（保留下半部）", value: "bottom" }
+                      - { label: "左側", value: "left" }
+                      - { label: "右側", value: "right" }
+                      - { label: "左上", value: "top-left" }
+                      - { label: "右上", value: "top-right" }
+                      - { label: "左下", value: "bottom-left" }
+                      - { label: "右下", value: "bottom-right" }
                   - { label: "底部行動文字（如 LIVE PREVIEW）", name: "actionLabel", widget: "string" }
                   - label: "底部行動圖示"
                     name: "actionIcon"
@@ -129,6 +157,20 @@ collections:
               - { label: "頁面大標題", name: "headerTitle", widget: "string" }
               - { label: "頁面描述", name: "headerDescription", widget: "text" }
               - { label: "肖像照", name: "portrait", widget: "image", required: false }
+              - label: "肖像焦點（裁切時保留哪個部位；選「上方」可確保臉部不被切到）"
+                name: "portraitFocus"
+                widget: "select"
+                default: "center"
+                options:
+                  - { label: "中間（預設）", value: "center" }
+                  - { label: "上方（保留上半部 / 臉部）", value: "top" }
+                  - { label: "下方", value: "bottom" }
+                  - { label: "左側", value: "left" }
+                  - { label: "右側", value: "right" }
+                  - { label: "左上", value: "top-left" }
+                  - { label: "右上", value: "top-right" }
+                  - { label: "左下", value: "bottom-left" }
+                  - { label: "右下", value: "bottom-right" }
               - { label: "個人介紹標題", name: "bioTitle", widget: "string" }
               - label: "個人介紹段落"
                 name: "bioParagraphs"

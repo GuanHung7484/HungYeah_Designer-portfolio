@@ -55,7 +55,7 @@
   <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter mb-unit-xl" data-bind-list="portfolio.works">
     <template>
       <div data-bind="category" data-bind-attr-data-category="" class="flex flex-col card-border bg-surface-container overflow-hidden group reveal">
-        <div class="aspect-[4/3] relative overflow-hidden cursor-zoom-in" data-lightbox>
+        <div class="aspect-[4/3] relative overflow-hidden cursor-zoom-in" data-lightbox data-bind="imageFocus" data-bind-attr-data-focus="">
           <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="Work" data-bind="image" data-bind-attr-data-src="">
             <span class="material-symbols-outlined ph-icon">image</span>
           </div>
