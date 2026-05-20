@@ -52,10 +52,10 @@
   </div>
 
   <!-- Portfolio Cards Grid -->
-  <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-unit-xl" data-bind-list="portfolio.works">
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter mb-unit-xl" data-bind-list="portfolio.works">
     <template>
       <div data-bind="category" data-bind-attr-data-category="" class="flex flex-col card-border bg-surface-container overflow-hidden group reveal">
-        <div class="aspect-[3/4] relative overflow-hidden">
+        <div class="aspect-[4/3] relative overflow-hidden cursor-zoom-in" data-lightbox>
           <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="Work" data-bind="image" data-bind-attr-data-src="">
             <span class="material-symbols-outlined ph-icon">image</span>
           </div>
@@ -75,7 +75,7 @@
     </template>
     <!-- 預設靜態內容（content.json 載入後會被取代） -->
     <div data-category="ui" class="flex flex-col card-border bg-surface-container overflow-hidden group reveal">
-      <div class="aspect-[3/4] relative overflow-hidden">
+      <div class="aspect-[4/3] relative overflow-hidden cursor-zoom-in" data-lightbox>
         <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="UI / Dashboard" data-src="images/project-ui.jpg">
           <span class="material-symbols-outlined ph-icon">dashboard</span>
         </div>
@@ -93,7 +93,7 @@
       </div>
     </div>
     <div data-category="photography" class="flex flex-col card-border bg-surface-container overflow-hidden group reveal">
-      <div class="aspect-[3/4] relative overflow-hidden">
+      <div class="aspect-[4/3] relative overflow-hidden cursor-zoom-in" data-lightbox>
         <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="Architecture" data-src="images/project-architecture.jpg">
           <span class="material-symbols-outlined ph-icon">apartment</span>
         </div>
@@ -111,7 +111,7 @@
       </div>
     </div>
     <div data-category="graphic" class="flex flex-col card-border bg-surface-container overflow-hidden group reveal">
-      <div class="aspect-[3/4] relative overflow-hidden">
+      <div class="aspect-[4/3] relative overflow-hidden cursor-zoom-in" data-lightbox>
         <div class="img-placeholder w-full h-full transition-transform duration-500 group-hover:scale-105" data-label="Brand Identity" data-src="images/project-brand.jpg">
           <span class="material-symbols-outlined ph-icon">style</span>
         </div>

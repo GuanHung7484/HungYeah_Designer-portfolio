@@ -131,6 +131,10 @@ function swapImagePlaceholders(root) {
       real.alt = el.dataset.label || '';
       real.loading = 'lazy';
       real.className = (el.className + ' object-cover').replace('img-placeholder', '').trim();
+      // Mark for lightbox if inside [data-lightbox] OR the placeholder itself has it
+      if (el.closest('[data-lightbox]')) {
+        real.dataset.lightboxTarget = '1';
+      }
       el.replaceWith(real);
     };
     probe.onerror = () => {
@@ -143,3 +147,54 @@ function swapImagePlaceholders(root) {
 
 swapImagePlaceholders();
 document.addEventListener('content:loaded', () => swapImagePlaceholders());
+
+// ─── Lightbox: click an image (or its [data-lightbox] wrapper) to see it full-size ───
+function openLightbox(src, caption) {
+  if (!src) return;
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = `
+    <button type="button" class="lightbox-close" aria-label="關閉">✕</button>
+    <img src="${src}" alt="${(caption || '').replace(/"/g, '&quot;')}" />
+    ${caption ? `<div class="lightbox-caption">${caption}</div>` : ''}
+  `;
+
+  function close() {
+    overlay.remove();
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', escHandler);
+  }
+  function escHandler(e) {
+    if (e.key === 'Escape') close();
+  }
+
+  overlay.addEventListener('click', (e) => {
+    // close on background or close-button click; ignore clicks on the image itself
+    if (e.target === overlay || e.target.classList.contains('lightbox-close')) close();
+  });
+  document.addEventListener('keydown', escHandler);
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+}
+
+document.addEventListener('click', (e) => {
+  // Look for either a lightbox-target <img>, OR a [data-lightbox] wrapper containing an <img>
+  const target = e.target.closest('img[data-lightbox-target], [data-lightbox]');
+  if (!target) return;
+  const img = target.tagName === 'IMG' ? target : target.querySelector('img');
+  if (!img || !img.src || img.dataset.lightboxTarget !== '1' && !target.hasAttribute('data-lightbox')) {
+    // For [data-lightbox] wrappers, only fire if the inner <img> has actually loaded (lightboxTarget=1)
+    if (target.hasAttribute('data-lightbox') && (!img || !img.src)) return;
+  }
+  if (img && img.src) {
+    e.preventDefault();
+    // Find the work title nearby as caption, if any
+    const card = target.closest('[data-category], .img-placeholder, [data-bind-list]');
+    let caption = img.alt || '';
+    if (card) {
+      const titleEl = card.querySelector('h3, h4');
+      if (titleEl && titleEl.textContent.trim()) caption = titleEl.textContent.trim();
+    }
+    openLightbox(img.src, caption);
+  }
+});
