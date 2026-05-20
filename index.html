@@ -145,5 +145,19 @@
 
 <script src="assets/content.js"></script>
 <script src="assets/main.js"></script>
+
+<!-- Netlify Identity widget — 接住邀請信點擊後的設密碼流程 -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', (user) => {
+      if (!user) {
+        window.netlifyIdentity.on('login', () => {
+          document.location.href = '/admin/';
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
