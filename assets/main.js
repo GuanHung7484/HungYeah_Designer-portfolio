@@ -105,18 +105,31 @@ document.addEventListener('content:loaded', (e) => {
   });
 });
 
-// Auto-swap .img-placeholder with a real <img> when a matching file exists
-document.querySelectorAll('.img-placeholder[data-src]').forEach((el) => {
-  const src = el.dataset.src;
-  if (!src) return;
-  const probe = new Image();
-  probe.onload = () => {
-    const real = document.createElement('img');
-    real.src = src;
-    real.alt = el.dataset.label || '';
-    real.loading = 'lazy';
-    real.className = (el.className + ' object-cover').replace('img-placeholder', '').trim();
-    el.replaceWith(real);
-  };
-  probe.src = src;
-});
+// Auto-swap .img-placeholder with a real <img> when a matching file exists.
+// Runs at script load (for static placeholders) AND on content:loaded
+// (for placeholders added dynamically by content.js list rendering).
+function swapImagePlaceholders(root) {
+  (root || document).querySelectorAll('.img-placeholder[data-src]').forEach((el) => {
+    const src = el.dataset.src;
+    if (!src) return;
+    if (el.dataset.swapped === '1') return;
+    el.dataset.swapped = '1';
+    const probe = new Image();
+    probe.onload = () => {
+      const real = document.createElement('img');
+      real.src = src;
+      real.alt = el.dataset.label || '';
+      real.loading = 'lazy';
+      real.className = (el.className + ' object-cover').replace('img-placeholder', '').trim();
+      el.replaceWith(real);
+    };
+    probe.onerror = () => {
+      // Image doesn't exist — keep the placeholder visible
+      delete el.dataset.swapped;
+    };
+    probe.src = src;
+  });
+}
+
+swapImagePlaceholders();
+document.addEventListener('content:loaded', () => swapImagePlaceholders());

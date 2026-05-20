@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>DESIGNER PORTFOLIO | 沈穩工藝，邏輯美學</title>
+<title data-bind="home.pageTitle">DESIGNER PORTFOLIO | 沈穩工藝，邏輯美學</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="assets/tailwind-config.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;500;600;700&display=swap" rel="stylesheet" />
@@ -15,20 +15,20 @@
 <!-- TopNavBar -->
 <nav data-sticky class="fixed top-0 w-full bg-surface z-50 border-b border-outline-variant transition-transform duration-300">
   <div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop w-full max-w-full mx-auto">
-    <a href="index.html" class="font-headline-md text-headline-md font-medium text-on-surface">DESIGNER PORTFOLIO</a>
+    <a href="index.html" data-bind="site.siteName" class="font-headline-md text-headline-md font-medium text-on-surface">DESIGNER PORTFOLIO</a>
     <div class="hidden md:flex items-center gap-unit-lg">
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="portfolio.html">作品</a>
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="about.html">關於</a>
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="contact.html">聯絡</a>
+      <a data-bind="site.navPortfolio" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="portfolio.html">作品</a>
+      <a data-bind="site.navAbout" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="about.html">關於</a>
+      <a data-bind="site.navContact" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="contact.html">聯絡</a>
     </div>
     <button data-menu-toggle class="md:hidden" aria-label="開啟選單">
       <span class="material-symbols-outlined text-on-surface">menu</span>
     </button>
   </div>
   <div data-mobile-menu class="hidden md:hidden border-t border-outline-variant bg-surface px-margin-mobile py-unit-md">
-    <a class="block py-unit-sm font-label-md text-label-md text-on-surface" href="portfolio.html">作品</a>
-    <a class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="about.html">關於</a>
-    <a class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="contact.html">聯絡</a>
+    <a data-bind="site.navPortfolio" class="block py-unit-sm font-label-md text-label-md text-on-surface" href="portfolio.html">作品</a>
+    <a data-bind="site.navAbout" class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="about.html">關於</a>
+    <a data-bind="site.navContact" class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="contact.html">聯絡</a>
   </div>
 </nav>
 
@@ -37,23 +37,23 @@
   <!-- Hero Section -->
   <section class="relative min-h-[680px] md:min-h-[870px] flex items-center px-margin-mobile md:px-margin-desktop overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <div class="img-placeholder w-full h-full opacity-40" data-label="Hero Image" data-src="images/hero.jpg">
+      <div class="img-placeholder w-full h-full opacity-40" data-label="Hero Image" data-src="images/hero.jpg" data-bind="home.heroImage" data-bind-attr-data-src="">
         <span class="material-symbols-outlined ph-icon">image</span>
       </div>
       <div class="hero-gradient absolute inset-0"></div>
     </div>
     <div class="relative z-10 max-w-4xl reveal">
       <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-surface mb-unit-md leading-tight">
-        沈穩工藝，<br />邏輯美學
+        <span data-bind="home.heroTitleLine1">沈穩工藝，</span><br /><span data-bind="home.heroTitleLine2">邏輯美學</span>
       </h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-unit-xl">
+      <p data-bind="home.heroDescription" class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-unit-xl">
         跨足攝影與數位產品設計的專業資歷。我專注於建構具有嚴謹邏輯的數位介面，並以攝影師的視角捕捉事物的核心本質，為企業提供兼具理性與感性的全方位視覺解決方案。
       </p>
       <div class="flex flex-wrap gap-unit-md">
-        <a href="contact.html" class="inline-flex items-center bg-primary-container text-on-primary-container px-unit-xl py-unit-md font-label-md text-label-md hover:bg-primary transition-all active:opacity-70 rounded-lg">
+        <a href="contact.html" data-bind="home.heroCtaPrimary" class="inline-flex items-center bg-primary-container text-on-primary-container px-unit-xl py-unit-md font-label-md text-label-md hover:bg-primary transition-all active:opacity-70 rounded-lg">
           洽談合作
         </a>
-        <a href="portfolio.html" class="inline-flex items-center border border-outline text-on-surface px-unit-xl py-unit-md font-label-md text-label-md hover:border-primary transition-all active:opacity-70 rounded-lg">
+        <a href="portfolio.html" data-bind="home.heroCtaSecondary" class="inline-flex items-center border border-outline text-on-surface px-unit-xl py-unit-md font-label-md text-label-md hover:border-primary transition-all active:opacity-70 rounded-lg">
           查看作品
         </a>
       </div>
@@ -63,31 +63,38 @@
   <!-- Featured Works -->
   <section class="py-unit-xl px-margin-mobile md:px-margin-desktop reveal">
     <div class="flex justify-between items-end mb-unit-xl border-b border-outline-variant pb-unit-sm">
-      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">精選作品</h2>
-      <span class="font-label-sm text-label-sm text-primary tracking-widest">SELECTED PROJECTS</span>
+      <h2 data-bind="home.featuredTitle" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">精選作品</h2>
+      <span data-bind="home.featuredEyebrow" class="font-label-sm text-label-sm text-primary tracking-widest">SELECTED PROJECTS</span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-      <!-- Case 1: UI/UX -->
-      <a href="portfolio.html" class="md:col-span-7 group cursor-pointer block">
-        <div class="relative aspect-[16/10] overflow-hidden border border-outline-variant rounded-lg mb-unit-md">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter" data-bind-list="home.featuredWorks">
+      <template>
+        <a data-bind="link" data-bind-attr-href="" class="group cursor-pointer block">
+          <div class="relative aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg mb-unit-md">
+            <div class="img-placeholder w-full h-full transition-transform duration-700 group-hover:scale-105" data-label="Work" data-bind="image" data-bind-attr-data-src="">
+              <span class="material-symbols-outlined ph-icon">image</span>
+            </div>
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="font-label-md text-label-md text-white border border-white px-unit-lg py-unit-sm rounded-lg">檢視細節</span>
+            </div>
+          </div>
+          <h3 data-bind="title" class="font-headline-md text-headline-md text-on-surface mb-unit-xs"></h3>
+          <p data-bind="subtitle" class="font-label-sm text-label-sm text-on-surface-variant"></p>
+        </a>
+      </template>
+      <!-- 預設靜態內容（content.json 載入後會被取代） -->
+      <a href="portfolio.html" class="group cursor-pointer block">
+        <div class="relative aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg mb-unit-md">
           <div class="img-placeholder w-full h-full transition-transform duration-700 group-hover:scale-105" data-label="UI/UX Case" data-src="images/work-ui.jpg">
             <span class="material-symbols-outlined ph-icon">dashboard</span>
-          </div>
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="font-label-md text-label-md text-white border border-white px-unit-lg py-unit-sm rounded-lg">檢視細節</span>
           </div>
         </div>
         <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-xs">查帳審核系統 (UI/UX)</h3>
         <p class="font-label-sm text-label-sm text-on-surface-variant">LOGIC / INTERFACE / DATA</p>
       </a>
-      <!-- Case 2: Photography -->
-      <a href="portfolio.html" class="md:col-span-5 group cursor-pointer block md:mt-unit-xl">
-        <div class="relative aspect-[3/4] overflow-hidden border border-outline-variant rounded-lg mb-unit-md">
+      <a href="portfolio.html" class="group cursor-pointer block">
+        <div class="relative aspect-[4/3] overflow-hidden border border-outline-variant rounded-lg mb-unit-md">
           <div class="img-placeholder w-full h-full transition-transform duration-700 group-hover:scale-105" data-label="Product Shot" data-src="images/work-photo.jpg">
             <span class="material-symbols-outlined ph-icon">photo_camera</span>
-          </div>
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <span class="font-label-md text-label-md text-white border border-white px-unit-lg py-unit-sm rounded-lg">檢視細節</span>
           </div>
         </div>
         <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-xs">商品攝影系列</h3>
@@ -99,7 +106,15 @@
   <!-- Professional Services -->
   <section class="py-unit-xl bg-surface-container-low px-margin-mobile md:px-margin-desktop reveal">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-unit-xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-unit-xl" data-bind-list="home.services">
+        <template>
+          <div class="border-l border-primary pl-unit-lg py-unit-sm">
+            <h4 data-bind="number" class="font-label-sm text-label-sm text-primary mb-unit-sm"></h4>
+            <h3 data-bind="title" class="font-headline-md text-headline-md text-on-surface mb-unit-md"></h3>
+            <p data-bind="description" class="font-body-md text-body-md text-on-surface-variant"></p>
+          </div>
+        </template>
+        <!-- 預設靜態內容（content.json 載入後會被取代） -->
         <div class="border-l border-primary pl-unit-lg py-unit-sm">
           <h4 class="font-label-sm text-label-sm text-primary mb-unit-sm">01.</h4>
           <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-md">攝影與影像</h3>
@@ -122,12 +137,12 @@
   <!-- Call to Action -->
   <section class="py-unit-xl px-margin-mobile md:px-margin-desktop text-center reveal">
     <div class="max-w-2xl mx-auto border border-outline-variant py-unit-xl px-unit-lg rounded-lg">
-      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-unit-md">準備好開始您的下一個計畫？</h2>
-      <p class="font-body-md text-body-md text-on-surface-variant mb-unit-xl">
+      <h2 data-bind="home.ctaTitle" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-unit-md">準備好開始您的下一個計畫？</h2>
+      <p data-bind="home.ctaDescription" class="font-body-md text-body-md text-on-surface-variant mb-unit-xl">
         無論是需要精準的視覺呈現，還是複雜的產品規劃，我已準備好為您提供專業諮詢。
       </p>
       <a class="inline-flex items-center gap-unit-sm bg-primary text-on-primary px-unit-xl py-unit-md font-label-md text-label-md rounded-lg hover:brightness-110 transition-all" href="contact.html">
-        洽談合作
+        <span data-bind="home.ctaButton">洽談合作</span>
         <span class="material-symbols-outlined text-[18px]">north_east</span>
       </a>
     </div>
@@ -138,8 +153,8 @@
 <!-- Footer -->
 <footer class="w-full mt-auto bg-surface-container border-t border-outline-variant">
   <div class="flex flex-col md:flex-row justify-between items-center py-unit-xl px-margin-mobile md:px-margin-desktop w-full gap-unit-md">
-    <span class="font-label-md text-label-md font-bold text-on-surface">DESIGNER PORTFOLIO</span>
-    <p class="font-label-sm text-label-sm text-on-surface-variant opacity-60">© 2026 Designer Portfolio. All rights reserved.</p>
+    <span data-bind="site.siteName" class="font-label-md text-label-md font-bold text-on-surface">DESIGNER PORTFOLIO</span>
+    <p data-bind="site.copyright" class="font-label-sm text-label-sm text-on-surface-variant opacity-60">© 2026 Designer Portfolio. All rights reserved.</p>
   </div>
 </footer>
 

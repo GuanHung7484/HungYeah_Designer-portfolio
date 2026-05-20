@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>關於 | DESIGNER PORTFOLIO</title>
+<title data-bind="about.pageTitle">關於 | DESIGNER PORTFOLIO</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="assets/tailwind-config.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,20 +14,20 @@
 
 <nav data-sticky class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant transition-transform duration-300">
   <div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-full mx-auto">
-    <a href="index.html" class="font-headline-md text-headline-md font-medium text-on-surface">DESIGNER PORTFOLIO</a>
+    <a href="index.html" data-bind="site.siteName" class="font-headline-md text-headline-md font-medium text-on-surface">DESIGNER PORTFOLIO</a>
     <div class="hidden md:flex gap-unit-lg items-center">
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="portfolio.html">作品</a>
-      <a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="about.html">關於</a>
-      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="contact.html">聯絡</a>
+      <a data-bind="site.navPortfolio" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="portfolio.html">作品</a>
+      <a data-bind="site.navAbout" class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="about.html">關於</a>
+      <a data-bind="site.navContact" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="contact.html">聯絡</a>
     </div>
     <button data-menu-toggle class="md:hidden" aria-label="開啟選單">
       <span class="material-symbols-outlined text-on-surface">menu</span>
     </button>
   </div>
   <div data-mobile-menu class="hidden md:hidden border-t border-outline-variant bg-surface px-margin-mobile py-unit-md">
-    <a class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="portfolio.html">作品</a>
-    <a class="block py-unit-sm font-label-md text-label-md text-primary" href="about.html">關於</a>
-    <a class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="contact.html">聯絡</a>
+    <a data-bind="site.navPortfolio" class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="portfolio.html">作品</a>
+    <a data-bind="site.navAbout" class="block py-unit-sm font-label-md text-label-md text-primary" href="about.html">關於</a>
+    <a data-bind="site.navContact" class="block py-unit-sm font-label-md text-label-md text-on-surface-variant" href="contact.html">聯絡</a>
   </div>
 </nav>
 
@@ -35,9 +35,9 @@
 
   <!-- Page Header -->
   <header class="mb-unit-xl reveal">
-    <span class="font-label-sm text-label-sm text-primary tracking-widest">ABOUT</span>
-    <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-unit-md mt-unit-sm text-on-surface">關於這位設計師</h1>
-    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+    <span data-bind="about.headerEyebrow" class="font-label-sm text-label-sm text-primary tracking-widest">ABOUT</span>
+    <h1 data-bind="about.headerTitle" class="font-display-lg text-headline-lg-mobile md:text-display-lg mb-unit-md mt-unit-sm text-on-surface">關於這位設計師</h1>
+    <p data-bind="about.headerDescription" class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
       在影像、平面與介面的交界處工作。我相信好的設計兼具嚴謹的邏輯與感性的細節——讓資訊清晰、讓品牌可被信賴。
     </p>
   </header>
@@ -45,18 +45,24 @@
   <!-- Profile + Bio -->
   <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-unit-xl reveal">
     <div class="md:col-span-5">
-      <div class="aspect-[4/5] border border-outline-variant rounded-lg overflow-hidden img-placeholder" data-label="Portrait" data-src="images/portrait.jpg">
+      <div class="aspect-[4/5] border border-outline-variant rounded-lg overflow-hidden img-placeholder" data-label="Portrait" data-src="images/portrait.jpg" data-bind="about.portrait" data-bind-attr-data-src="">
         <span class="material-symbols-outlined ph-icon">person</span>
       </div>
     </div>
     <div class="md:col-span-7 flex flex-col justify-center">
-      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-unit-md">沈穩工藝，邏輯美學</h2>
-      <p class="font-body-md text-body-md text-on-surface-variant mb-unit-md">
-        我擁有十餘年跨越攝影、平面設計與數位產品的實踐經驗。早期在精品與商業攝影領域累積對材質、布光與構圖的敏感度，後續轉向品牌視覺與企業級 UI/UX 系統設計，逐步建立一套兼容理性與感性的工作方法。
-      </p>
-      <p class="font-body-md text-body-md text-on-surface-variant mb-unit-lg">
-        現階段專注於協助企業客戶處理複雜的資訊架構與品牌升級任務。透過 Claude AI 輔助開發流程，從概念、設計到實作能更快收斂成品，同時保持對細節與系統一致性的高標準。
-      </p>
+      <h2 data-bind="about.bioTitle" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-unit-md">沈穩工藝，邏輯美學</h2>
+      <div data-bind-list="about.bioParagraphs" class="mb-unit-lg">
+        <template>
+          <p data-bind="@" class="font-body-md text-body-md text-on-surface-variant mb-unit-md"></p>
+        </template>
+        <!-- 預設靜態內容（content.json 載入後會被取代） -->
+        <p class="font-body-md text-body-md text-on-surface-variant mb-unit-md">
+          我擁有十餘年跨越攝影、平面設計與數位產品的實踐經驗。早期在精品與商業攝影領域累積對材質、布光與構圖的敏感度，後續轉向品牌視覺與企業級 UI/UX 系統設計，逐步建立一套兼容理性與感性的工作方法。
+        </p>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-unit-md">
+          現階段專注於協助企業客戶處理複雜的資訊架構與品牌升級任務。透過 Claude AI 輔助開發流程，從概念、設計到實作能更快收斂成品，同時保持對細節與系統一致性的高標準。
+        </p>
+      </div>
       <div class="flex flex-wrap gap-unit-md">
         <a href="portfolio.html" class="inline-flex items-center bg-primary-container text-on-primary-container px-unit-xl py-unit-md font-label-md text-label-md hover:bg-primary transition-all rounded-lg">查看作品</a>
         <a href="contact.html" class="inline-flex items-center border border-outline text-on-surface px-unit-xl py-unit-md font-label-md text-label-md hover:border-primary transition-all rounded-lg">洽談合作</a>
@@ -67,10 +73,18 @@
   <!-- Capability Pillars -->
   <section class="py-unit-xl border-t border-outline-variant reveal">
     <div class="flex justify-between items-end mb-unit-xl">
-      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">能力光譜</h2>
-      <span class="font-label-sm text-label-sm text-primary tracking-widest hidden md:block">CAPABILITIES</span>
+      <h2 data-bind="about.capabilitiesTitle" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">能力光譜</h2>
+      <span data-bind="about.capabilitiesEyebrow" class="font-label-sm text-label-sm text-primary tracking-widest hidden md:block">CAPABILITIES</span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-unit-xl">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-unit-xl" data-bind-list="about.capabilities">
+      <template>
+        <div class="border-l border-primary pl-unit-lg py-unit-sm">
+          <h4 data-bind="number" class="font-label-sm text-label-sm text-primary mb-unit-sm"></h4>
+          <h3 data-bind="title" class="font-headline-md text-headline-md text-on-surface mb-unit-md"></h3>
+          <p data-bind="description" class="font-body-md text-body-md text-on-surface-variant"></p>
+        </div>
+      </template>
+      <!-- 預設靜態內容（content.json 載入後會被取代） -->
       <div class="border-l border-primary pl-unit-lg py-unit-sm">
         <h4 class="font-label-sm text-label-sm text-primary mb-unit-sm">01.</h4>
         <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-md">攝影與影像</h3>
@@ -92,39 +106,50 @@
   <!-- Experience Timeline -->
   <section class="py-unit-xl border-t border-outline-variant reveal">
     <div class="flex justify-between items-end mb-unit-xl">
-      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">經歷紀事</h2>
-      <span class="font-label-sm text-label-sm text-primary tracking-widest hidden md:block">EXPERIENCE</span>
+      <h2 data-bind="about.experiencesTitle" class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">經歷紀事</h2>
+      <span data-bind="about.experiencesEyebrow" class="font-label-sm text-label-sm text-primary tracking-widest hidden md:block">EXPERIENCE</span>
     </div>
-    <ol class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-      <li class="card-border bg-surface-container p-unit-lg rounded-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter" data-bind-list="about.experiences">
+      <template>
+        <div class="card-border bg-surface-container p-unit-lg rounded-lg">
+          <span data-bind="period" class="font-label-sm text-label-sm text-primary tracking-widest"></span>
+          <h3 data-bind="title" class="font-headline-md text-headline-md text-on-surface mt-unit-sm mb-unit-sm"></h3>
+          <p data-bind="description" class="font-body-md text-body-md text-on-surface-variant"></p>
+        </div>
+      </template>
+      <!-- 預設靜態內容（content.json 載入後會被取代） -->
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
         <span class="font-label-sm text-label-sm text-primary tracking-widest">2022 — NOW</span>
         <h3 class="font-headline-md text-headline-md text-on-surface mt-unit-sm mb-unit-sm">獨立設計顧問</h3>
         <p class="font-body-md text-body-md text-on-surface-variant">服務金融、法律、品牌等領域的客戶，主導企業視覺與內部系統再設計。</p>
-      </li>
-      <li class="card-border bg-surface-container p-unit-lg rounded-lg">
+      </div>
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
         <span class="font-label-sm text-label-sm text-primary tracking-widest">2018 — 2022</span>
         <h3 class="font-headline-md text-headline-md text-on-surface mt-unit-sm mb-unit-sm">資深 UI/UX 設計師</h3>
         <p class="font-body-md text-body-md text-on-surface-variant">負責企業 SaaS 產品的設計系統與資訊架構，主導跨團隊的設計規範制定。</p>
-      </li>
-      <li class="card-border bg-surface-container p-unit-lg rounded-lg">
+      </div>
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
         <span class="font-label-sm text-label-sm text-primary tracking-widest">2014 — 2018</span>
         <h3 class="font-headline-md text-headline-md text-on-surface mt-unit-sm mb-unit-sm">品牌與平面設計師</h3>
         <p class="font-body-md text-body-md text-on-surface-variant">為精品、出版與藝文機構提供品牌識別、編輯排版與印刷物設計。</p>
-      </li>
-      <li class="card-border bg-surface-container p-unit-lg rounded-lg">
+      </div>
+      <div class="card-border bg-surface-container p-unit-lg rounded-lg">
         <span class="font-label-sm text-label-sm text-primary tracking-widest">2010 — 2014</span>
         <h3 class="font-headline-md text-headline-md text-on-surface mt-unit-sm mb-unit-sm">商業攝影師</h3>
         <p class="font-body-md text-body-md text-on-surface-variant">商品、建築與形象攝影；建立對材質與光影的長期觀察與審美。</p>
-      </li>
-    </ol>
+      </div>
+    </div>
   </section>
 
   <!-- Tools / Clients -->
   <section class="py-unit-xl border-t border-outline-variant reveal">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-unit-xl">
       <div>
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-md">工具與技術</h3>
-        <ul class="grid grid-cols-2 gap-unit-sm font-body-md text-body-md text-on-surface-variant">
+        <h3 data-bind="about.toolsTitle" class="font-headline-md text-headline-md text-on-surface mb-unit-md">工具與技術</h3>
+        <ul class="grid grid-cols-2 gap-unit-sm font-body-md text-body-md text-on-surface-variant" data-bind-list="about.tools">
+          <template>
+            <li data-bind="@"></li>
+          </template>
           <li>Figma</li>
           <li>Adobe CC</li>
           <li>Capture One</li>
@@ -136,8 +161,11 @@
         </ul>
       </div>
       <div>
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-unit-md">合作領域</h3>
-        <ul class="grid grid-cols-2 gap-unit-sm font-body-md text-body-md text-on-surface-variant">
+        <h3 data-bind="about.clientsTitle" class="font-headline-md text-headline-md text-on-surface mb-unit-md">合作領域</h3>
+        <ul class="grid grid-cols-2 gap-unit-sm font-body-md text-body-md text-on-surface-variant" data-bind-list="about.clients">
+          <template>
+            <li data-bind="@"></li>
+          </template>
           <li>金融 / 法律</li>
           <li>精品 / 製造</li>
           <li>建築 / 空間</li>
@@ -153,8 +181,8 @@
 
 <footer class="w-full mt-auto bg-surface-container border-t border-outline-variant">
   <div class="flex flex-col md:flex-row justify-between items-center py-unit-xl px-margin-mobile md:px-margin-desktop w-full gap-unit-md">
-    <div class="font-label-md text-label-md font-bold text-on-surface">DESIGNER PORTFOLIO</div>
-    <p class="font-label-sm text-label-sm text-on-surface-variant opacity-60">© 2026 Designer Portfolio. All rights reserved.</p>
+    <div data-bind="site.siteName" class="font-label-md text-label-md font-bold text-on-surface">DESIGNER PORTFOLIO</div>
+    <p data-bind="site.copyright" class="font-label-sm text-label-sm text-on-surface-variant opacity-60">© 2026 Designer Portfolio. All rights reserved.</p>
   </div>
 </footer>
 

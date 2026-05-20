@@ -19,7 +19,9 @@
   const CONTENT_PATH = 'content.json';
 
   function resolve(obj, path) {
-    if (!path) return undefined;
+    if (path == null) return undefined;
+    // Empty / @ / . all mean "self" — useful for list items that are primitives (strings)
+    if (path === '' || path === '@' || path === '.') return obj;
     return path.split('.').reduce((o, k) => (o == null ? o : o[k]), obj);
   }
 
