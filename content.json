@@ -87,6 +87,17 @@
     ],
     "works": [
       {
+        "actionIcon": "play_circle",
+        "categoryLabel": "UI/UX · 工程",
+        "title": "月結沖帳自動化引擎",
+        "link": "usagi-recon.html",
+        "image": "",
+        "description": "Python＋JavaScript 雙引擎決策樹，自動分類 32 個會計科目；18 個月、約 19,000 筆訂單逐筆驗證。點入可一鍵試玩分類引擎與看案例研究。",
+        "imageFocus": "center",
+        "category": "ui",
+        "actionLabel": "互動 DEMO ＆ 案例"
+      },
+      {
         "actionIcon": "link",
         "categoryLabel": "UI/UX",
         "title": "查帳核對系統網站",
