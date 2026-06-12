@@ -19,6 +19,13 @@
     "ctaDescription": "無論是需要精準的視覺呈現，還是複雜的產品規劃，我已準備好為您提供專業諮詢。",
     "featuredWorks": [
       {
+        "title": "月結沖帳自動化引擎",
+        "subtitle": "AUTOMATION / DECISION TREE / ACCOUNTING",
+        "image": "/images/uploads/recon-engine-cover.png",
+        "link": "usagi-recon.html",
+        "imageFocus": "center"
+      },
+      {
         "title": "查帳審核系統 (UI/UX)",
         "subtitle": "LOGIC / INTERFACE / DATA",
         "image": "/images/uploads/螢幕擷取畫面-2026-05-20-154915.png",
@@ -91,7 +98,7 @@
         "categoryLabel": "UI/UX · 工程",
         "title": "月結沖帳自動化引擎",
         "link": "usagi-recon.html",
-        "image": "",
+        "image": "/images/uploads/recon-engine-cover.png",
         "description": "Python＋JavaScript 雙引擎決策樹，自動分類 32 個會計科目；18 個月、約 19,000 筆訂單逐筆驗證。點入可一鍵試玩分類引擎與看案例研究。",
         "imageFocus": "center",
         "category": "ui",
