@@ -154,37 +154,53 @@
       <div class="flex items-start justify-between flex-wrap gap-unit-md mb-unit-lg">
         <div>
           <h3 class="font-headline-md text-headline-md text-on-surface">① 一鍵批次對帳</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant mt-1">模擬真實工具：讀入當月五種來源明細 → 引擎批次分類 → 產出六張工作表結果 → 一鍵匯出 Excel。</p>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">模擬真實工具：讀入當月六種來源明細 → 引擎批次分類 → 產出六張工作表結果 → 一鍵匯出 Excel。</p>
         </div>
         <button id="runBatch" class="bg-primary text-on-primary px-unit-lg py-unit-md font-label-md text-label-md rounded-lg flex items-center gap-unit-sm hover:opacity-90 transition-opacity shrink-0">
-          <span class="material-symbols-outlined">play_arrow</span> 一鍵執行對帳（24 筆示意）
+          <span class="material-symbols-outlined">play_arrow</span> 一鍵執行對帳（44 筆示意）
         </button>
       </div>
       <!-- 模擬輸入明細 -->
       <div class="mb-unit-lg">
-        <div class="font-label-sm text-label-sm text-on-surface-variant mb-unit-sm uppercase tracking-widest">模擬輸入明細（去識別化示意資料，對應真實工具的五個來源檔）</div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-unit-sm">
+        <div class="font-label-sm text-label-sm text-on-surface-variant mb-unit-sm uppercase tracking-widest">模擬輸入明細（去識別化示意資料，對應真實工具的六個來源檔）</div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-unit-sm">
           <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
             <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
-            <div><div class="font-label-sm text-label-sm text-on-surface">5月_發票明細</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">18 筆</div></div>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_發票明細</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">28 筆</div></div>
           </div>
           <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
             <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
-            <div><div class="font-label-sm text-label-sm text-on-surface">5月_刷卡對帳</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">22 筆</div></div>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_刷卡對帳</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">17 筆</div></div>
           </div>
           <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
             <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
-            <div><div class="font-label-sm text-label-sm text-on-surface">5月_刷卡分期</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">8 筆</div></div>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_刷卡分期</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">6 筆</div></div>
           </div>
           <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
             <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
-            <div><div class="font-label-sm text-label-sm text-on-surface">5月_折讓明細</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">5 筆</div></div>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_折讓明細</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">6 筆</div></div>
+          </div>
+          <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">local_shipping</span>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_物流貨到付款</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">9 筆</div></div>
           </div>
           <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
             <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
-            <div><div class="font-label-sm text-label-sm text-on-surface">5月_前期應收預收</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">4 筆</div></div>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_前期應收預收</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">8 筆</div></div>
           </div>
         </div>
+        <details class="mt-unit-sm group">
+          <summary class="font-label-sm text-label-sm text-primary cursor-pointer hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined transition-transform group-open:rotate-90" style="font-size:16px">chevron_right</span>各來源檔的關鍵欄位（含物流）
+          </summary>
+          <div class="mt-unit-sm grid sm:grid-cols-2 gap-unit-sm font-label-sm text-label-sm text-on-surface-variant">
+            <div class="bg-surface rounded p-unit-sm"><b class="text-on-surface">發票明細</b>：訂單單號 · 發票日期 · 發票號碼 · 付款方式 · 購買金額合計 · 運費 · 折扣金額 · 發票金額 · 備註</div>
+            <div class="bg-surface rounded p-unit-sm"><b class="text-on-surface">刷卡對帳 / 分期</b>：訂單編號 · 交易類別 · 金額（退款為負）· 姓名 · 請款時間</div>
+            <div class="bg-surface rounded p-unit-sm"><b class="text-on-surface">折讓明細</b>：訂單單號 · 折讓單號 · 折讓日期 · 發票號碼 · 總額</div>
+            <div class="bg-surface rounded p-unit-sm"><b class="text-on-surface">物流（新竹物流貨到付款）</b>：清單編號（訂單號）· 收貨人名稱 · 代收貨款金額（退款為負）· 匯款日期 → 歸「物流」通路，依沖銷/應收/預收分類</div>
+            <div class="bg-surface rounded p-unit-sm sm:col-span-2"><b class="text-on-surface">前期應收預收</b>：分兩分頁「前期應收（訂單單號…發票金額）」「前期預收（訂單編號…發票金額(合計)）」，供跨月結轉判斷</div>
+          </div>
+        </details>
       </div>
       <div id="batchOut"></div>
     </div>
@@ -520,47 +536,65 @@
   //   pay=總收款, atmR=ATM退款, disc=折讓, nInv=發票張數, nPay=付款數
   //   recv={發票日期,發票號碼,統編,購買金額,運費,折扣,發票金額,備註} → 結轉到「應收」分頁
   //   prep={日期,待退,備註} → 結轉到「預收」分頁
+  // 44 筆去識別化示意訂單，覆蓋四通路全部會計科目（與真實 11月_沖帳結果.xlsx 同結構）
   const ORDERS = [
     // ── ATM 通路 ──
-    {oid:'260503000011',cli:'客戶A',ch:'ATM',method:'ATM 轉帳',cat:'本月沖銷(發票)',acct:5000,inv:5000,pay:5000,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260504000008',cli:'客戶C',ch:'ATM',method:'ATM 轉帳',cat:'本月沖銷(發票)',acct:3150,inv:3150,pay:3150,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260503000005',cli:'客戶A',ch:'ATM',method:'ATM 轉帳',cat:'本月應收',acct:2701,inv:2701,pay:0,atmR:0,disc:0,nInv:1,nPay:1,
-      recv:{invDate:'2026/05/03',invNo:'GY900011',taxId:'',buy:2890,freight:100,disc:289,invAmt:2701,note:'未查到入帳!! 5/12客服已聯絡客人匯款'}},
-    {oid:'260515000044',cli:'客戶E',ch:'ATM',method:'ATM 轉帳',cat:'本月應收',acct:6800,inv:6800,pay:0,atmR:0,disc:0,nInv:1,nPay:1,
-      recv:{invDate:'2026/05/15',invNo:'GY900041',taxId:'',buy:6800,freight:0,disc:0,invAmt:6800,note:''}},
-    {oid:'260506000033',cli:'客戶B',ch:'ATM',method:'ATM 轉帳',cat:'上月預收沖銷',acct:4800,inv:4800,pay:4800,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260509000071',cli:'客戶D',ch:'ATM',method:'ATM 轉帳',cat:'上月預收退款-已退(ATM)',acct:-3180,inv:0,pay:0,atmR:-3180,disc:0,nInv:0,nPay:1},
-    {oid:'260520000066',cli:'客戶E',ch:'ATM',method:'ATM 轉帳',cat:'本月預收',acct:2500,inv:0,pay:2500,atmR:0,disc:0,nInv:0,nPay:1,
-      prep:{date:'2026/05/20',refund:'',note:''}},
-    {oid:'260512000031',cli:'客戶B',ch:'ATM',method:'ATM 轉帳',cat:'作廢待退-預收',acct:2000,inv:0,pay:2000,atmR:0,disc:0,nInv:1,nPay:1,
-      prep:{date:'',refund:'',note:'作廢待退'}},
+    {oid:'250500000101', cli:'客戶A', ch:'ATM', method:'ATM 轉帳', cat:'上月預收部份退款-已退(ATM)', acct:-3200, inv:0, pay:6800, atmR:-3200, disc:0, nInv:1, nPay:2},
+    {oid:'250500000102', cli:'客戶B', ch:'ATM', method:'ATM 轉帳', cat:'上月預收退款-已退(ATM)', acct:-5400, inv:0, pay:5400, atmR:-5400, disc:0, nInv:1, nPay:2},
+    {oid:'250500000103', cli:'客戶C', ch:'ATM', method:'ATM 轉帳', cat:'上月預收沖銷', acct:31200, inv:31200, pay:31200, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000104', cli:'客戶D', ch:'ATM', method:'ATM 轉帳', cat:'上月應收部份折讓-已退(ATM)', acct:4800, inv:4800, pay:4800, atmR:-1600, disc:1600, nInv:1, nPay:1},
+    {oid:'250500000105', cli:'客戶E', ch:'ATM', method:'ATM 轉帳', cat:'作廢已退(ATM)', acct:-2900, inv:0, pay:2900, atmR:-2900, disc:0, nInv:1, nPay:1},
+    {oid:'250500000106', cli:'客戶F', ch:'ATM', method:'ATM 轉帳', cat:'本月沖銷(發票)', acct:128400, inv:128400, pay:128400, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000107', cli:'客戶A', ch:'ATM', method:'ATM 轉帳', cat:'本月沖銷(發票)', acct:62300, inv:62300, pay:62300, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000108', cli:'客戶B', ch:'ATM', method:'ATM 轉帳', cat:'作廢待退-預收', acct:7600, inv:0, pay:7600, atmR:0, disc:0, nInv:1, nPay:1, prep:{date:'2026/05/06', refund:'', note:'作廢待退'}},
+    {oid:'250500000109', cli:'客戶C', ch:'ATM', method:'ATM 轉帳', cat:'本月應收', acct:9500, inv:9500, pay:0, atmR:0, disc:0, nInv:1, nPay:0, recv:{invDate:'2026/05/03', invNo:'GY900011', taxId:'', buy:9500, freight:0, disc:0, invAmt:9500, note:''}},
+    {oid:'250500000110', cli:'客戶D', ch:'ATM', method:'ATM 轉帳', cat:'本月預收', acct:14200, inv:0, pay:14200, atmR:0, disc:0, nInv:1, nPay:1, prep:{date:'2026/05/09', refund:'', note:''}},
+    {oid:'250500000111', cli:'客戶A', ch:'ATM', method:'ATM 轉帳', cat:'本月應收', acct:12600, inv:12600, pay:0, atmR:0, disc:0, nInv:1, nPay:0, recv:{invDate:'2026/05/06', invNo:'GY900014', taxId:'', buy:12000, freight:600, disc:0, invAmt:12600, note:''}},
+    {oid:'250500000112', cli:'客戶F', ch:'ATM', method:'ATM 轉帳', cat:'本月應收', acct:7350, inv:7350, pay:0, atmR:0, disc:0, nInv:1, nPay:0, recv:{invDate:'2026/05/07', invNo:'GY900015', taxId:'24681012', buy:7800, freight:0, disc:450, invAmt:7350, note:'折扣後開立'}},
     // ── 物流 通路（貨到付款）──
-    {oid:'260504000061',cli:'客戶A',ch:'物流',method:'貨到付款',cat:'本月沖銷(發票)',acct:890,inv:890,pay:890,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260518000105',cli:'客戶E',ch:'物流',method:'貨到付款',cat:'本月沖銷(發票)',acct:3400,inv:3400,pay:3400,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260507000072',cli:'客戶B',ch:'物流',method:'貨到付款',cat:'本月應收',acct:1250,inv:1250,pay:0,atmR:0,disc:0,nInv:1,nPay:1,
-      recv:{invDate:'2026/05/07',invNo:'GY900021',taxId:'',buy:1250,freight:0,disc:0,invAmt:1250,note:''}},
-    {oid:'260503000061',cli:'客戶A',ch:'物流',method:'貨到付款',cat:'本月應收',acct:4500,inv:4500,pay:0,atmR:0,disc:0,nInv:1,nPay:1,
-      recv:{invDate:'2026/05/03',invNo:'GY900061',taxId:'',buy:4470,freight:30,disc:0,invAmt:4500,note:''}},
-    {oid:'260514000094',cli:'客戶D',ch:'物流',method:'貨到付款',cat:'本月預收',acct:680,inv:0,pay:680,atmR:0,disc:0,nInv:0,nPay:1,
-      prep:{date:'',refund:'',note:''}},
+    {oid:'250500000113', cli:'客戶D', ch:'物流', method:'貨到付款', cat:'本月應收', acct:23400, inv:23400, pay:0, atmR:0, disc:0, nInv:1, nPay:0, recv:{invDate:'2026/05/08', invNo:'GY900016', taxId:'', buy:23100, freight:300, disc:0, invAmt:23400, note:''}},
+    {oid:'250500000201', cli:'客戶E', ch:'物流', method:'貨到付款', cat:'本月應收', acct:18700, inv:18700, pay:0, atmR:0, disc:0, nInv:1, nPay:0, recv:{invDate:'2026/05/04', invNo:'GY900012', taxId:'53912004', buy:18000, freight:700, disc:0, invAmt:18700, note:'統編開立'}},
+    {oid:'250500000202', cli:'客戶F', ch:'物流', method:'貨到付款', cat:'上月預收退款-已退(ATM)', acct:-1300, inv:0, pay:1300, atmR:-1300, disc:0, nInv:1, nPay:2},
+    {oid:'250500000203', cli:'客戶A', ch:'物流', method:'貨到付款', cat:'上月應收沖銷', acct:8900, inv:8900, pay:8900, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000204', cli:'客戶B', ch:'物流', method:'貨到付款', cat:'本月預收退款-已退(ATM)', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:2},
+    {oid:'250500000205', cli:'客戶C', ch:'物流', method:'貨到付款', cat:'本月沖銷(發票)', acct:96300, inv:96300, pay:96300, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000206', cli:'客戶D', ch:'物流', method:'貨到付款', cat:'本月沖銷(發票)', acct:41500, inv:41500, pay:41500, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000207', cli:'客戶E', ch:'物流', method:'貨到付款', cat:'本月預收', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:1, prep:{date:'2026/05/11', refund:'', note:''}},
     // ── 信用卡 通路（線上刷卡）──
-    {oid:'260503000027',cli:'客戶A',ch:'信用卡',method:'線上刷卡',cat:'本月沖銷(發票)',acct:4980,inv:4980,pay:4980,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260512000061',cli:'客戶C',ch:'信用卡',method:'線上刷卡',cat:'本月沖銷(發票)',acct:6100,inv:6100,pay:6100,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260509000022',cli:'客戶C',ch:'信用卡',method:'線上刷卡',cat:'上月預收部份退款-已退(信用卡)',acct:-2440,inv:0,pay:2540,atmR:0,disc:0,nInv:0,nPay:2},
-    {oid:'260510000005',cli:'客戶A',ch:'信用卡',method:'線上刷卡',cat:'折讓已退(信用卡)',acct:-300,inv:0,pay:-300,atmR:0,disc:300,nInv:0,nPay:1},
-    {oid:'260505000012',cli:'客戶B',ch:'信用卡',method:'線上刷卡',cat:'本月應收',acct:8200,inv:8200,pay:0,atmR:0,disc:0,nInv:1,nPay:1,
-      recv:{invDate:'2026/05/05',invNo:'GY900031',taxId:'04461166',buy:8765,freight:0,disc:565,invAmt:8200,note:''}},
-    {oid:'260508000019',cli:'客戶C',ch:'信用卡',method:'線上刷卡',cat:'本月應收',acct:3100,inv:3100,pay:0,atmR:0,disc:0,nInv:1,nPay:1,
-      recv:{invDate:'2026/05/08',invNo:'GY900051',taxId:'',buy:3100,freight:0,disc:0,invAmt:3100,note:''}},
-    {oid:'260507000099',cli:'客戶A',ch:'信用卡',method:'線上刷卡',cat:'本月預收',acct:1800,inv:0,pay:1800,atmR:0,disc:0,nInv:0,nPay:1,
-      prep:{date:'',refund:'',note:''}},
-    // ── 信用卡-分期 通路 ──
-    {oid:'260503000028',cli:'客戶B',ch:'信用卡-分期',method:'線上刷卡-分期',cat:'本月沖銷(發票)',acct:12600,inv:12600,pay:12600,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260513000016',cli:'客戶D',ch:'信用卡-分期',method:'線上刷卡-分期',cat:'本月沖銷(發票)',acct:15000,inv:15000,pay:15000,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260517000059',cli:'客戶E',ch:'信用卡-分期',method:'線上刷卡-分期',cat:'上月應收沖銷',acct:9900,inv:9900,pay:9900,atmR:0,disc:0,nInv:1,nPay:1},
-    {oid:'260521000074',cli:'客戶F',ch:'信用卡-分期',method:'線上刷卡-分期',cat:'本月預收',acct:7200,inv:0,pay:7200,atmR:0,disc:0,nInv:0,nPay:1,
-      prep:{date:'',refund:'',note:''}},
+    {oid:'250500000114', cli:'客戶A', ch:'信用卡', method:'線上刷卡', cat:'本月應收', acct:5980, inv:5980, pay:0, atmR:0, disc:0, nInv:1, nPay:0, recv:{invDate:'2026/05/09', invNo:'GY900017', taxId:'', buy:6500, freight:0, disc:520, invAmt:5980, note:''}},
+    {oid:'250500000301', cli:'客戶F', ch:'信用卡', method:'線上刷卡', cat:'上月預收部份退款-待退(信用卡)', acct:5200, inv:0, pay:5200, atmR:0, disc:0, nInv:1, nPay:1, prep:{date:'2026/04/27', refund:'5200', note:'待退'}},
+    {oid:'250500000302', cli:'客戶A', ch:'信用卡', method:'線上刷卡', cat:'上月預收退款-已退(信用卡)', acct:-62400, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:2},
+    {oid:'250500000303', cli:'客戶B', ch:'信用卡', method:'線上刷卡', cat:'折讓已退(信用卡)', acct:-4600, inv:0, pay:-4600, atmR:0, disc:4600, nInv:1, nPay:1},
+    {oid:'250500000304', cli:'客戶C', ch:'信用卡', method:'線上刷卡', cat:'上月預收部份退款-已退(信用卡)', acct:-15800, inv:0, pay:33000, atmR:0, disc:0, nInv:1, nPay:2},
+    {oid:'250500000305', cli:'客戶D', ch:'信用卡', method:'線上刷卡', cat:'信用卡退款-前幾期的款項', acct:-9800, inv:0, pay:-9800, atmR:0, disc:0, nInv:0, nPay:1},
+    {oid:'250500000306', cli:'客戶E', ch:'信用卡', method:'ATM 轉帳', cat:'上月預收部份退款-已退(ATM)', acct:-1280, inv:0, pay:3150, atmR:-1280, disc:0, nInv:1, nPay:2},
+    {oid:'250500000307', cli:'客戶F', ch:'信用卡', method:'線上刷卡', cat:'上月應收沖銷', acct:88700, inv:88700, pay:88700, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000308', cli:'客戶A', ch:'信用卡', method:'線上刷卡', cat:'上月應收部份折讓-已退(信用卡)', acct:28400, inv:57200, pay:28400, atmR:0, disc:28800, nInv:1, nPay:1},
+    {oid:'250500000309', cli:'客戶B', ch:'信用卡', method:'線上刷卡', cat:'人工比對K', acct:3100, inv:3100, pay:0, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000310', cli:'客戶C', ch:'信用卡', method:'線上刷卡', cat:'本月沖銷(發票)', acct:512300, inv:512300, pay:512300, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000311', cli:'客戶D', ch:'信用卡', method:'線上刷卡', cat:'本月沖銷(發票)', acct:284600, inv:284600, pay:284600, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000312', cli:'客戶E', ch:'信用卡', method:'線上刷卡', cat:'作廢已退(信用卡)', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000313', cli:'客戶F', ch:'信用卡', method:'線上刷卡', cat:'本月預收退款-已退(信用卡)', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:2},
+    {oid:'250500000314', cli:'客戶A', ch:'信用卡', method:'線上刷卡', cat:'作廢待退-預收', acct:46300, inv:0, pay:46300, atmR:0, disc:0, nInv:1, nPay:1, prep:{date:'2026/05/13', refund:'', note:'作廢待退'}},
+    {oid:'250500000315', cli:'客戶B', ch:'信用卡', method:'線上刷卡', cat:'本月應收', acct:215800, inv:215800, pay:0, atmR:0, disc:0, nInv:1, nPay:0, recv:{invDate:'2026/05/05', invNo:'GY900013', taxId:'', buy:215800, freight:0, disc:0, invAmt:215800, note:''}},
+    {oid:'250500000316', cli:'客戶C', ch:'信用卡', method:'線上刷卡', cat:'本月作廢', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:0},
+    {oid:'250500000317', cli:'客戶D', ch:'信用卡', method:'線上刷卡', cat:'本月預收', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:1, prep:{date:'2026/05/14', refund:'', note:''}},
+    // ── 信用卡-分期 通路（線上刷卡-分期）──
+    {oid:'250500000401', cli:'客戶E', ch:'信用卡-分期', method:'線上刷卡-分期', cat:'信用卡退款-前幾期的款項', acct:-5300, inv:0, pay:-5300, atmR:0, disc:0, nInv:0, nPay:1},
+    {oid:'250500000402', cli:'客戶F', ch:'信用卡-分期', method:'線上刷卡-分期', cat:'上月應收部份折讓-已退(ATM)', acct:12600, inv:12600, pay:12600, atmR:-3400, disc:3400, nInv:1, nPay:1},
+    {oid:'250500000403', cli:'客戶A', ch:'信用卡-分期', method:'線上刷卡-分期', cat:'上月應收沖銷', acct:14800, inv:14800, pay:14800, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000404', cli:'客戶B', ch:'信用卡-分期', method:'線上刷卡-分期', cat:'本月沖銷(發票)', acct:102700, inv:102700, pay:102700, atmR:0, disc:0, nInv:1, nPay:1},
+    {oid:'250500000405', cli:'客戶C', ch:'信用卡-分期', method:'線上刷卡-分期', cat:'本月預收退款-已退(信用卡)', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:2},
+    {oid:'250500000406', cli:'客戶D', ch:'信用卡-分期', method:'線上刷卡-分期', cat:'本月預收', acct:0, inv:0, pay:0, atmR:0, disc:0, nInv:1, nPay:1, prep:{date:'2026/05/15', refund:'', note:''}}
   ];
+
+  // 各通路會計科目的標準輸出順序（取自真實 11月_沖帳結果.xlsx；(原收款金額) 副列由程式自動插在父科目下方）
+  const CANONICAL_ORDER = {
+    'ATM': ['上月預收部份退款-已退(ATM)','上月預收退款-已退(ATM)','上月預收沖銷','上月應收部份折讓-已退(ATM)','作廢已退(ATM)','本月沖銷(發票)','作廢待退-預收','本月應收','本月預收'],
+    '物流': ['本月應收','上月預收退款-已退(ATM)','上月應收沖銷','本月預收退款-已退(ATM)','本月沖銷(發票)','本月預收'],
+    '信用卡': ['上月預收部份退款-待退(信用卡)','上月預收退款-已退(信用卡)','折讓已退(信用卡)','上月預收部份退款-已退(信用卡)','信用卡退款-前幾期的款項','上月預收部份退款-已退(ATM)','上月應收沖銷','上月應收部份折讓-已退(信用卡)','人工比對K','本月沖銷(發票)','作廢已退(信用卡)','本月預收退款-已退(信用卡)','作廢待退-預收','本月應收','本月作廢','本月預收'],
+    '信用卡-分期': ['信用卡退款-前幾期的款項','上月應收部份折讓-已退(ATM)','上月應收沖銷','本月沖銷(發票)','本月預收退款-已退(信用卡)','本月預收'],
+  };
 
   // 真實 recon.py 的分頁欄位
   const RECV_COLS = ['序號','出貨日期','訂單單號','發票日期','客戶名稱','發票號碼','付款方式','客戶名稱','統一編號','入賬日期','購買金額合計','運費','折扣金額','發票金額','備註'];
@@ -574,21 +608,29 @@
   // 預收分頁:收 PREP_CATS
   function prepRows(){ return ORDERS.filter(o=>PREP_CATS.has(o.cat)&&o.prep); }
 
-  // 通路彙總:同 recon.py write_xlsx ── 各分類加總會計科目金額 + (原收款金額)副列 + 本月預收固定尾列
+  // 通路彙總:完全比照 recon.py write_xlsx ──
+  //   1) 各分類加總「會計科目金額」 2) 特定分類在其下插「(原收款金額)」副列
+  //   3) 依真實檔的標準科目順序輸出 4)「本月預收」固定為最後一列(即使為 0)
   function channelSummary(ch){
-    const order=[]; const totals={};
-    const add=(k,v)=>{ if(!(k in totals)){totals[k]=0;order.push(k);} totals[k]+=v; };
+    const totals={}, sub={};
     ORDERS.filter(o=>o.ch===ch&&o.cat!=='折讓待退').forEach(o=>{
-      add(o.cat,o.acct);
-      if(o.cat==='上月應收部份折讓-已退(信用卡)') add(o.cat+'(原收款金額)',o.inv);
-      else if(o.cat==='上月預收部份退款-已退(信用卡)') add(o.cat+'(原收款金額)',o.pay-o.acct);
-      else if(o.cat==='上月預收部份退款-已退(ATM)'||o.cat==='本月部份退款-已退(ATM)') add(o.cat+'(原收款金額)',o.pay);
-      else if(o.cat==='本月部份退款-待退') add(o.cat+'(原收款金額)',o.pay*2);
+      totals[o.cat]=(totals[o.cat]||0)+o.acct;
+      let k=null, v=0;
+      if(o.cat==='上月應收部份折讓-已退(信用卡)'){ k=o.cat+'(原收款金額)'; v=o.inv; }
+      else if(o.cat==='上月預收部份退款-已退(信用卡)'){ k=o.cat+'(原收款金額)'; v=o.pay-o.acct; }
+      else if(o.cat==='上月預收部份退款-已退(ATM)'||o.cat==='本月部份退款-已退(ATM)'){ k=o.cat+'(原收款金額)'; v=o.pay; }
+      else if(o.cat==='本月部份退款-待退'){ k=o.cat+'(原收款金額)'; v=o.pay*2; }
+      if(k) sub[k]=(sub[k]||0)+v;
     });
-    // 「本月預收」固定置於最後一列(即使為 0)
-    const tail = ('本月預收' in totals) ? totals['本月預收'] : 0;
-    const rows = order.filter(k=>k!=='本月預收').map(k=>[k, Math.round(totals[k])]);
-    rows.push(['本月預收', Math.round(tail)]);
+    const rows=[];
+    (CANONICAL_ORDER[ch]||[]).forEach(cat=>{
+      if(cat==='本月預收') return;            // 尾列最後處理
+      if(!(cat in totals)) return;            // 只列出本月有該分類的科目
+      rows.push([cat, Math.round(totals[cat])]);
+      const sk=cat+'(原收款金額)';
+      if(sk in sub) rows.push([sk, Math.round(sub[sk])]);
+    });
+    rows.push(['本月預收', Math.round(totals['本月預收']||0)]);   // 固定尾列(即使 0)
     return rows;
   }
 
@@ -611,8 +653,10 @@
     return `<p class="font-label-sm text-label-sm text-on-surface-variant mb-unit-sm">「本月應收」明細 → 結轉到下月的「前期應收」。共 ${rows.length} 筆。</p>`
       + tableHTML(RECV_COLS, rows, {right:[10,11,12,13]});
   }
+  // 預收分頁「發票金額(合計)」欄:上月預收部份退款-待退(信用卡) 取會計科目金額,其餘取收款
+  function prepAmt(o){ return o.cat==='上月預收部份退款-待退(信用卡)' ? o.acct : o.pay; }
   function panePrep(){
-    const rows = prepRows().map(o=>[o.oid,o.prep.date,o.cli,o.method,o.pay,'',o.prep.refund,o.prep.note]);
+    const rows = prepRows().map(o=>[o.oid,o.prep.date,o.cli,o.method,prepAmt(o),'',o.prep.refund,o.prep.note]);
     return `<p class="font-label-sm text-label-sm text-on-surface-variant mb-unit-sm">本月「預收」明細(本月預收 / 作廢待退 / 部份退款待退）→ 結轉到下月的「前期預收」。共 ${rows.length} 筆。</p>`
       + tableHTML(PREP_COLS, rows, {right:[4,6]});
   }
@@ -662,7 +706,7 @@
       const recvAoa = [RECV_COLS, ...recvRows().map(o=>['','',o.oid,o.recv.invDate,o.cli,o.recv.invNo,o.method,'',o.recv.taxId,'',o.recv.buy,o.recv.freight,o.recv.disc,o.recv.invAmt,o.recv.note])];
       XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(recvAoa), '應收');
       // 預收
-      const prepAoa = [PREP_COLS, ...prepRows().map(o=>[o.oid,o.prep.date,o.cli,o.method,o.pay,'',o.prep.refund,o.prep.note])];
+      const prepAoa = [PREP_COLS, ...prepRows().map(o=>[o.oid,o.prep.date,o.cli,o.method,prepAmt(o),'',o.prep.refund,o.prep.note])];
       XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(prepAoa), '預收');
       // 4 通路彙總(無表頭，與真實一致)
       CHANNELS.forEach(ch=>{
@@ -685,7 +729,7 @@
   }
 
   document.getElementById('runBatch').addEventListener('click', function(){
-    document.getElementById('batchOut').innerHTML='<div class="font-label-sm text-label-sm text-on-surface-variant py-unit-sm">引擎執行中…讀取五個來源檔 → 逐筆分類 → 產出六分頁</div>';
+    document.getElementById('batchOut').innerHTML='<div class="font-label-sm text-label-sm text-on-surface-variant py-unit-sm">引擎執行中…讀取六個來源檔 → 逐筆分類 → 產出六分頁</div>';
     setTimeout(runBatch, 350);
   });
 
