@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 <link href="assets/styles.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
   /* segmented toggle */
@@ -29,6 +30,13 @@
   .path-step:not(:last-child)::after { content:''; position:absolute; left:9px; top:16px; bottom:-6px; width:1px; background:#4d453f; }
   .state-badge { font-size:11px; letter-spacing:.08em; padding:2px 9px; border-radius:0.75rem; font-weight:600; }
   details>summary{list-style:none;cursor:pointer} details>summary::-webkit-details-marker{display:none}
+  /* sheet tabs */
+  .tab-bar { display:flex; border-bottom:1px solid #4d453f; margin-bottom:1rem; overflow-x:auto; gap:0; }
+  .tab-btn { padding:8px 14px; font-size:12px; letter-spacing:.06em; color:#998f87; white-space:nowrap; border-bottom:2px solid transparent; transition:all .18s; background:none; }
+  .tab-btn.active { color:#d3c4b7; border-bottom-color:#d3c4b7; font-weight:600; }
+  .tab-btn:hover:not(.active) { color:#c4b8b0; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
 </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -143,16 +151,42 @@
 
     <!-- ① 一鍵批次對帳（示意） -->
     <div class="card-border bg-surface-container rounded-lg p-unit-lg mb-unit-lg">
-      <div class="flex items-center justify-between flex-wrap gap-unit-md">
+      <div class="flex items-start justify-between flex-wrap gap-unit-md mb-unit-lg">
         <div>
           <h3 class="font-headline-md text-headline-md text-on-surface">① 一鍵批次對帳</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant mt-1">模擬真實工具：按一下，引擎把整批訂單分類並產出逐筆結果與彙總。</p>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">模擬真實工具：讀入當月五種來源明細 → 引擎批次分類 → 產出六張工作表結果 → 一鍵匯出 Excel。</p>
         </div>
         <button id="runBatch" class="bg-primary text-on-primary px-unit-lg py-unit-md font-label-md text-label-md rounded-lg flex items-center gap-unit-sm hover:opacity-90 transition-opacity shrink-0">
-          <span class="material-symbols-outlined">play_arrow</span> 一鍵執行對帳（24 筆示意）
+          <span class="material-symbols-outlined">play_arrow</span> 一鍵執行對帳（30 筆示意）
         </button>
       </div>
-      <div id="batchOut" class="mt-unit-lg"></div>
+      <!-- 模擬輸入明細 -->
+      <div class="mb-unit-lg">
+        <div class="font-label-sm text-label-sm text-on-surface-variant mb-unit-sm uppercase tracking-widest">模擬輸入明細（去識別化示意資料，對應真實工具的五個來源檔）</div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-unit-sm">
+          <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_發票明細</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">18 筆</div></div>
+          </div>
+          <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_刷卡對帳</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">22 筆</div></div>
+          </div>
+          <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_刷卡分期</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">8 筆</div></div>
+          </div>
+          <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_折讓明細</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">5 筆</div></div>
+          </div>
+          <div class="bg-surface rounded border border-outline-variant p-unit-sm flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary" style="font-size:18px">description</span>
+            <div><div class="font-label-sm text-label-sm text-on-surface">5月_前期應收預收</div><div class="font-label-sm text-label-sm text-on-surface-variant opacity-60">4 筆</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="batchOut"></div>
     </div>
 
     <!-- ② 單筆探索 -->
@@ -480,64 +514,152 @@
     render();
   }
 
-  // ===== ① 一鍵批次對帳（示意資料，純前端、零真實資料）=====
+  // ===== ① 一鍵批次對帳（30 筆示意，6 張工作表，Excel 匯出）=====
+  const CLIENTS = ['客戶A','客戶B','客戶C','客戶D','客戶E','客戶F'];
+  // [oid, invNo, date, clientIdx, method, hasInv, hasPay, I, P, R, D, invPeriod, payPeriod, nInv, nPay]
   const SAMPLE = [
-    ['250503000011','線上刷卡',1,1,4980,4980,0,0,'current','current',1,1],
-    ['250503000027','線上刷卡-分期',1,1,12600,12600,0,0,'current','current',1,1],
-    ['250504000008','ATM 轉帳',1,1,3150,3150,0,0,'current','current',1,1],
-    ['250504000061','貨到付款',1,1,890,890,0,0,'current','current',1,1],
-    ['250505000019','線上刷卡',1,0,5400,0,0,0,'current','current',1,0],
-    ['250505000044','ATM 轉帳',1,0,2200,0,0,0,'current','current',1,0],
-    ['250506000003','線上刷卡',0,1,0,1800,0,0,'current','current',0,1],
-    ['250506000033','ATM 轉帳',0,1,0,3600,0,0,'current','current',0,1],
-    ['250507000015','線上刷卡',1,1,7700,7700,0,0,'last','current',1,1],
-    ['250507000052','線上刷卡-分期',1,1,9900,9900,0,0,'last','current',1,1],
-    ['250508000007','線上刷卡-分期',1,1,6000,8400,0,0,'current','current',1,2],
-    ['250508000048','線上刷卡',1,1,3300,5100,0,0,'current','current',1,2],
-    ['250509000022','線上刷卡',0,1,0,-2440,0,0,'current','current',0,1],
-    ['250509000071','線上刷卡-分期',0,1,0,-5200,0,0,'current','current',0,1],
-    ['250510000005','線上刷卡',0,0,0,0,0,600,'current','current',0,0],
-    ['250510000038','ATM 轉帳',1,1,0,2000,0,0,'current','current',1,1],
-    ['250511000014','ATM 轉帳',1,1,4000,4000,-500,0,'current','current',1,1],
-    ['250511000029','貨到付款',1,1,2680,2680,0,0,'current','current',1,1],
-    ['250512000061','線上刷卡',1,1,5800,5500,0,300,'current','current',1,1],
-    ['250512000088','線上刷卡',1,1,4200,4200,0,0,'current','last',1,1],
-    ['250513000016','線上刷卡-分期',1,1,15000,15000,0,0,'current','current',1,1],
-    ['250513000042','ATM 轉帳',1,0,1950,0,0,0,'current','current',1,0],
-    ['250514000009','線上刷卡',0,1,0,2750,0,0,'current','current',0,1],
-    ['250514000055','貨到付款',1,1,3400,3400,0,0,'current','current',1,1],
+    // 應收 (hasInv=1, hasPay=0) × 5
+    ['250503000005','ZZ26050001','2026/05/03',0,'—',1,0,4500,0,0,0,'current','current',1,0],
+    ['250505000012','ZZ26050009','2026/05/05',1,'—',1,0,8200,0,0,0,'current','current',1,0],
+    ['250508000019','ZZ26050017','2026/05/08',2,'—',1,0,3100,0,0,0,'current','current',1,0],
+    ['250512000031','ZZ26050025','2026/05/12',3,'—',1,0,0,0,0,0,'current','current',1,0],
+    ['250515000044','ZZ26050033','2026/05/15',4,'—',1,0,6800,0,0,0,'current','current',1,0],
+    // 預收 (hasInv=0, hasPay=1) × 5
+    ['250504000008','—','2026/05/04',0,'線上刷卡',0,1,0,2800,0,0,'current','current',0,1],
+    ['250507000015','—','2026/05/07',1,'ATM 轉帳',0,1,0,1500,0,0,'current','current',0,1],
+    ['250509000022','—','2026/05/09',2,'線上刷卡',0,1,0,-2440,0,0,'current','current',0,1],
+    ['250511000029','—','2026/05/11',3,'線上刷卡-分期',0,1,0,-5200,0,0,'current','current',0,1],
+    ['250513000038','—','2026/05/13',4,'ATM 轉帳',0,1,0,4800,-1200,0,'current','current',0,2],
+    // ATM 轉帳 (hasInv=1, hasPay=1) × 5
+    ['250503000011','ZZ26050002','2026/05/03',0,'ATM 轉帳',1,1,5000,5000,0,0,'current','current',1,1],
+    ['250506000033','ZZ26050010','2026/05/06',1,'ATM 轉帳',1,1,7700,7700,0,0,'last','current',1,1],
+    ['250511000014','ZZ26050018','2026/05/11',2,'ATM 轉帳',1,1,4000,4000,-500,0,'current','current',1,1],
+    ['250516000051','ZZ26050026','2026/05/16',3,'ATM 轉帳',1,1,3200,4800,0,0,'current','current',1,2],
+    ['250520000066','ZZ26050034','2026/05/20',4,'ATM 轉帳',1,1,0,2500,0,0,'current','current',1,1],
+    // 貨到付款 × 5
+    ['250504000061','ZZ26050003','2026/05/04',0,'貨到付款',1,1,890,890,0,0,'current','current',1,1],
+    ['250507000072','ZZ26050011','2026/05/07',1,'貨到付款',1,1,1250,1250,0,0,'current','current',1,1],
+    ['250510000083','ZZ26050019','2026/05/10',2,'貨到付款',1,1,2100,2100,0,0,'current','current',1,1],
+    ['250514000094','ZZ26050027','2026/05/14',3,'貨到付款',1,1,680,680,0,0,'current','current',1,1],
+    ['250518000105','ZZ26050035','2026/05/18',4,'貨到付款',1,1,3400,3400,0,0,'current','current',1,1],
+    // 線上刷卡 × 5
+    ['250503000027','ZZ26050004','2026/05/03',0,'線上刷卡',1,1,4980,4980,0,0,'current','current',1,1],
+    ['250507000052','ZZ26050012','2026/05/07',1,'線上刷卡',1,1,9200,9200,0,0,'last','current',1,1],
+    ['250512000061','ZZ26050020','2026/05/12',2,'線上刷卡',1,1,5800,5500,0,300,'current','current',1,1],
+    ['250515000078','ZZ26050028','2026/05/15',3,'線上刷卡',1,1,8076,16152,0,0,'current','current',1,2],
+    ['250519000091','ZZ26050036','2026/05/19',4,'線上刷卡',1,1,4200,4200,0,0,'current','last',1,1],
+    // 線上刷卡-分期 × 5
+    ['250503000028','ZZ26050005','2026/05/03',1,'線上刷卡-分期',1,1,12600,12600,0,0,'current','current',1,1],
+    ['250508000048','ZZ26050013','2026/05/08',2,'線上刷卡-分期',1,1,6000,8400,0,0,'current','current',1,2],
+    ['250513000016','ZZ26050021','2026/05/13',3,'線上刷卡-分期',1,1,15000,15000,0,0,'current','current',1,1],
+    ['250517000059','ZZ26050029','2026/05/17',4,'線上刷卡-分期',1,1,9900,9900,0,0,'last','current',1,1],
+    ['250521000074','ZZ26050037','2026/05/21',5,'線上刷卡-分期',1,1,7200,7200,0,0,'current','current',1,1],
   ];
-  function runBatch(){
-    const rows = SAMPLE.map(r=>{
-      const res = classify({hasInv:r[2],hasPay:r[3],I:r[4],P:r[5],R:r[6],D:r[7],invPeriod:r[8],payPeriod:r[9],nInv:r[10],nPay:r[11]});
-      return {oid:r[0],method:r[1],cat:res.cat,amt:res.amount,manual:res.manual};
-    });
-    const sum={};
-    rows.forEach(o=>{ (sum[o.cat]=sum[o.cat]||{n:0,amt:0}).n++; sum[o.cat].amt+=o.amt; });
-    const cats=Object.keys(sum);
-    const sumRows = cats.map(c=>`<tr class="border-t border-outline-variant"><td class="py-1 pr-3">${c}</td><td class="py-1 px-3 text-right mono">${sum[c].n}</td><td class="py-1 pl-3 text-right mono">${fmt(sum[c].amt)}</td></tr>`).join('');
-    const detail = rows.map(o=>`<tr class="border-t border-outline-variant"><td class="py-1.5 pr-3 mono">${o.oid}</td><td class="py-1.5 px-3 whitespace-nowrap">${o.method}</td><td class="py-1.5 px-3" style="color:${o.manual?'#d97706':'#d3c4b7'}">${o.cat}</td><td class="py-1.5 pl-3 text-right mono">${fmt(o.amt)}</td></tr>`).join('');
-    document.getElementById('batchOut').innerHTML = `
-      <div class="grid grid-cols-3 gap-unit-md mb-unit-lg">
-        <div class="bg-surface-container-low rounded-lg p-unit-md text-center"><div class="mono text-headline-md text-primary">${rows.length}</div><div class="font-label-sm text-label-sm text-on-surface-variant">筆處理完成</div></div>
-        <div class="bg-surface-container-low rounded-lg p-unit-md text-center"><div class="mono text-headline-md text-primary">${cats.length}</div><div class="font-label-sm text-label-sm text-on-surface-variant">個會計科目</div></div>
-        <div class="bg-surface-container-low rounded-lg p-unit-md text-center"><div class="mono text-headline-md text-primary">&lt;1s</div><div class="font-label-sm text-label-sm text-on-surface-variant">運算時間</div></div>
-      </div>
-      <div class="grid lg:grid-cols-2 gap-gutter">
-        <div>
-          <div class="font-label-sm text-label-sm text-on-surface-variant mb-unit-sm">彙總（依會計科目）</div>
-          <table class="w-full font-label-sm text-label-sm text-on-surface"><thead><tr class="text-on-surface-variant text-left"><th class="pb-1 pr-3">會計科目</th><th class="pb-1 px-3 text-right">筆數</th><th class="pb-1 pl-3 text-right">會科金額</th></tr></thead><tbody>${sumRows}</tbody></table>
-        </div>
-        <div>
-          <div class="font-label-sm text-label-sm text-on-surface-variant mb-unit-sm">逐筆結果（result.txt 示意）</div>
-          <div class="overflow-auto card-border rounded-lg" style="max-height:300px">
-          <table class="w-full font-label-sm text-label-sm text-on-surface"><thead><tr class="text-on-surface-variant text-left sticky top-0 bg-surface-container"><th class="py-1 pr-3 pl-2">訂單號</th><th class="py-1 px-3">付款方式</th><th class="py-1 px-3">分類</th><th class="py-1 pl-3 pr-2 text-right">會科金額</th></tr></thead><tbody>${detail}</tbody></table>
-          </div>
-        </div>
-      </div>`;
+
+  function routeSheet(hasInv, hasPay, method) {
+    if (!hasPay) return '應收';
+    if (!hasInv) return '預收';
+    if (method === 'ATM 轉帳') return 'ATM';
+    if (method === '貨到付款') return '物流';
+    if (method === '線上刷卡-分期') return '信用卡-分期';
+    return '信用卡';
   }
+
+  const TAIL_LABELS = {'應收':'本月應收合計','預收':'本月預收合計','ATM':'本月ATM代收款','物流':'本月物流代收款','信用卡':'本月信用卡收款','信用卡-分期':'本月分期收款'};
+
+  function sheetCols(name) {
+    return {
+      showInvNo: name !== '預收',
+      showI: name !== '預收',
+      showP: name !== '應收',
+      showR: name === 'ATM' || name === '預收',
+      showD: name === '信用卡' || name === '信用卡-分期',
+    };
+  }
+
+  function buildSheetTable(name, rows) {
+    const c = sheetCols(name);
+    const totalAmt = rows.reduce((s,r)=>s+r.amt,0);
+    const hdr = ['訂單號','客戶名稱','日期',...(c.showInvNo?['發票號碼']:[]),...(c.showI?['發票金額']:[]),...(c.showP?['收款淨額']:[]),...(c.showR?['ATM退款']:[]),...(c.showD?['折讓']:[]),'分類結果','會科金額'];
+    const colSpan = hdr.length;
+    const tbody = rows.map(r => {
+      const ac = r.error?'#ffb4ab':r.manual?'#d97706':'';
+      return `<tr class="border-t border-outline-variant hover:bg-surface-container transition-colors">
+        <td class="py-1.5 px-2 mono text-xs whitespace-nowrap">${r.oid}</td>
+        <td class="py-1.5 px-2 whitespace-nowrap">${r.client}</td>
+        <td class="py-1.5 px-2 text-xs opacity-60 whitespace-nowrap">${r.date}</td>
+        ${c.showInvNo?`<td class="py-1.5 px-2 mono text-xs opacity-60 whitespace-nowrap">${r.invNo}</td>`:''}
+        ${c.showI?`<td class="py-1.5 px-2 text-right mono whitespace-nowrap">${r.I?fmt(r.I):'—'}</td>`:''}
+        ${c.showP?`<td class="py-1.5 px-2 text-right mono whitespace-nowrap">${r.P?fmt(r.P):'—'}</td>`:''}
+        ${c.showR?`<td class="py-1.5 px-2 text-right mono whitespace-nowrap">${r.R?fmt(r.R):'—'}</td>`:''}
+        ${c.showD?`<td class="py-1.5 px-2 text-right mono whitespace-nowrap">${r.D?fmt(r.D):'—'}</td>`:''}
+        <td class="py-1.5 px-2 whitespace-nowrap"${ac?' style="color:'+ac+'"':''}>${r.cat}</td>
+        <td class="py-1.5 px-2 text-right mono font-medium whitespace-nowrap">${fmt(r.amt)}</td>
+      </tr>`;
+    }).join('');
+    const tailRow = `<tr class="border-t-2 border-outline bg-surface-container font-medium">
+      <td colspan="${colSpan-1}" class="py-2 px-2 font-label-sm text-label-sm text-on-surface-variant">${TAIL_LABELS[name]}</td>
+      <td class="py-2 px-2 text-right mono text-on-surface">${fmt(totalAmt)}</td>
+    </tr>`;
+    return `<div class="overflow-auto rounded border border-outline-variant" style="max-height:300px">
+      <table class="w-full font-label-sm text-label-sm text-on-surface">
+        <thead class="sticky top-0 bg-surface-container z-10">
+          <tr class="text-on-surface-variant text-left">${hdr.map(h=>`<th class="py-2 px-2 font-medium whitespace-nowrap">${h}</th>`).join('')}</tr>
+        </thead>
+        <tbody>${tbody}${tailRow}</tbody>
+      </table>
+    </div>`;
+  }
+
+  function runBatch() {
+    const SHEET_NAMES = ['應收','預收','ATM','物流','信用卡','信用卡-分期'];
+    const sheets = {};
+    SHEET_NAMES.forEach(n => sheets[n] = []);
+    SAMPLE.forEach(r => {
+      const [oid,invNo,date,ci,method,hasInv,hasPay,I,P,R,D,invPeriod,payPeriod,nInv,nPay] = r;
+      const res = classify({hasInv,hasPay,I,P,R,D,invPeriod,payPeriod,nInv,nPay});
+      const sn = routeSheet(hasInv,hasPay,method);
+      sheets[sn].push({oid,invNo,date,client:CLIENTS[ci],method,hasInv,hasPay,I,P,R,D,cat:res.cat,amt:res.amount,manual:res.manual,error:res.error});
+    });
+
+    const statsHtml = `<div class="grid grid-cols-3 gap-unit-md mb-unit-lg">
+      <div class="bg-surface-container-low rounded-lg p-unit-md text-center"><div class="mono text-headline-md text-primary">30</div><div class="font-label-sm text-label-sm text-on-surface-variant">筆處理完成</div></div>
+      <div class="bg-surface-container-low rounded-lg p-unit-md text-center"><div class="mono text-headline-md text-primary">6</div><div class="font-label-sm text-label-sm text-on-surface-variant">張工作表</div></div>
+      <div class="bg-surface-container-low rounded-lg p-unit-md text-center"><div class="mono text-headline-md text-primary">&lt;1s</div><div class="font-label-sm text-label-sm text-on-surface-variant">運算時間</div></div>
+    </div>`;
+
+    const tabBarHtml = `<div class="tab-bar" id="sheetTabs">${SHEET_NAMES.map((n,i)=>`<button class="tab-btn${i===0?' active':''}" data-tab="${n}">${n} <span class="opacity-50">(${sheets[n].length})</span></button>`).join('')}</div>`;
+    const panesHtml = SHEET_NAMES.map((n,i)=>`<div id="tab-${n}" class="tab-pane${i===0?' active':''}">${buildSheetTable(n,sheets[n])}</div>`).join('');
+    const dlBtnHtml = `<div class="flex justify-end mt-unit-md"><button id="dlXlsx" class="flex items-center gap-2 border border-primary text-primary px-unit-md py-unit-sm font-label-md text-label-md rounded-lg hover:bg-primary hover:text-on-primary transition-all"><span class="material-symbols-outlined" style="font-size:18px">download</span>下載 Excel（6 張工作表）</button></div>`;
+
+    document.getElementById('batchOut').innerHTML = statsHtml + tabBarHtml + panesHtml + dlBtnHtml;
+
+    document.getElementById('sheetTabs').addEventListener('click', e => {
+      const btn = e.target.closest('.tab-btn'); if(!btn) return;
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('#sheetTabs .tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+      document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active', p.id==='tab-'+tab));
+    });
+
+    document.getElementById('dlXlsx').addEventListener('click', ()=>{
+      if(typeof XLSX==='undefined'){alert('XLSX 函式庫尚未載入，請重新整理頁面後再試');return;}
+      const wb = XLSX.utils.book_new();
+      SHEET_NAMES.forEach(name => {
+        const rows = sheets[name];
+        const c = sheetCols(name);
+        const hdr = ['訂單號','客戶名稱','日期',...(c.showInvNo?['發票號碼']:[]),...(c.showI?['發票金額']:[]),...(c.showP?['收款淨額']:[]),...(c.showR?['ATM退款']:[]),...(c.showD?['折讓']:[]),'分類結果','會科金額'];
+        const dataRows = rows.map(r=>[r.oid,r.client,r.date,...(c.showInvNo?[r.invNo]:[]),...(c.showI?[r.I]:[]),...(c.showP?[r.P]:[]),...(c.showR?[r.R]:[]),...(c.showD?[r.D]:[]),r.cat,r.amt]);
+        const total = rows.reduce((s,r)=>s+r.amt,0);
+        const tailRow = [TAIL_LABELS[name],...Array(hdr.length-2).fill(''),total];
+        const ws = XLSX.utils.aoa_to_sheet([hdr,...dataRows,tailRow]);
+        XLSX.utils.book_append_sheet(wb, ws, name);
+      });
+      XLSX.writeFile(wb, '2026_05_沖帳結果_示意.xlsx');
+    });
+  }
+
   document.getElementById('runBatch').addEventListener('click', function(){
-    document.getElementById('batchOut').innerHTML='<div class="font-label-sm text-label-sm text-on-surface-variant">處理中…</div>';
+    document.getElementById('batchOut').innerHTML='<div class="font-label-sm text-label-sm text-on-surface-variant py-unit-sm">引擎執行中…</div>';
     setTimeout(runBatch, 300);
   });
 
